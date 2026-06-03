@@ -1,0 +1,37 @@
+{% extends 'store/base.html' %}
+{% block title %}{{ article.title }} — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <a href="{% url 'store:news' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к новостям
+    </a>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" 
+                 style="width: 100%; height: 400px; object-fit: cover;">
+        {% else %}
+            <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                        display: flex; align-items: center; justify-content: center; font-size: 80px; color: white;">
+                📰
+            </div>
+        {% endif %}
+        
+        <div style="padding: 40px;">
+            <h1 style="color: #333; margin-bottom: 15px; font-size: 36px;">{{ article.title }}</h1>
+            <p style="color: #888; font-size: 14px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                📅 Опубликовано: {{ article.published_date|date:"d/m/Y" }}
+                {% if article.updated_date %}
+                    &nbsp;|&nbsp; ✏️ Обновлено: {{ article.updated_date|date:"d/m/Y" }}
+                {% endif %}
+            </p>
+            
+            <div style="color: #555; line-height: 1.8; font-size: 16px;">
+                {{ article.content|linebreaks }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

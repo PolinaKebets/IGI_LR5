@@ -1,0 +1,71 @@
+﻿{% extends 'store/base.html' %}
+{% block title %}Главная — ХимМаркет{% endblock %}
+{% block content %}
+
+<div class="card" style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);">
+    <h1 style="font-size: 42px; margin-bottom: 15px;">🛍️ Добро пожаловать в ХимМаркет!</h1>
+    <p style="font-size: 18px; color: #666; margin-bottom: 30px;">
+        Интернет-магазин бытовой химии с доставкой по всей Беларуси
+    </p>
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="{% url 'store:product_list' %}" class="btn btn-primary" style="font-size: 16px; padding: 15px 35px;">
+            🛒 Каталог товаров
+        </a>
+        <a href="{% url 'store:promo_codes' %}" class="btn btn-success" style="font-size: 16px; padding: 15px 35px;">
+            🏷️ Промокоды
+        </a>
+        <a href="{% url 'store:reviews' %}" class="btn btn-info" style="font-size: 16px; padding: 15px 35px;">
+            💬 Отзывы
+        </a>
+    </div>
+</div>
+
+<div class="grid-3" style="margin-top: 40px;">
+    <div class="card" style="text-align: center;">
+        <div style="font-size: 50px; margin-bottom: 15px;">🧹</div>
+        <h3>Бытовая химия</h3>
+        <p style="color: #666; margin: 15px 0;">Широкий ассортимент чистящих и моющих средств</p>
+        <a href="{% url 'store:product_list' %}" class="btn btn-primary">Смотреть каталог</a>
+    </div>
+    <div class="card" style="text-align: center;">
+        <div style="font-size: 50px; margin-bottom: 15px;">🚚</div>
+        <h3>Быстрая доставка</h3>
+        <p style="color: #666; margin: 15px 0;">Доставим заказ в удобный пункт выдачи</p>
+        <a href="{% url 'store:contacts' %}" class="btn btn-secondary">Узнать подробнее</a>
+    </div>
+    <div class="card" style="text-align: center;">
+        <div style="font-size: 50px; margin-bottom: 15px;">💰</div>
+        <h3>Лучшие цены</h3>
+        <p style="color: #666; margin: 15px 0;">Скидки и промокоды для постоянных клиентов</p>
+        <a href="{% url 'store:promo_codes' %}" class="btn btn-success">Получить скидку</a>
+    </div>
+</div>
+
+{% if last_article %}
+<div class="card" style="margin-top: 40px;">
+    <h2 style="color: #667eea;">📰 Последняя новость</h2>
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 25px; align-items: center; margin-top: 20px;">
+        {% if last_article.image %}
+        <img src="{{ last_article.image.url }}" alt="{{ last_article.title }}" 
+             style="width: 100%; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+        {% endif %}
+        <div>
+            <h3 style="margin-bottom: 10px;">{{ last_article.title }}</h3>
+            <p style="color: #888; font-size: 14px; margin-bottom: 15px;">
+                📅 {{ last_article.published_date|date:"d/m/Y" }}
+            </p>
+            <p style="color: #555; line-height: 1.6;">{{ last_article.summary }}</p>
+            <a href="{% url 'store:news_detail' last_article.pk %}" class="btn btn-primary" style="margin-top: 15px;">
+                Читать далее →
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top: 40px;">
+    <h3 style="color: #764ba2;">📅 Календарь работы пунктов выдачи</h3>
+    <pre style="background: #f8f9fa; padding: 20px; border-radius: 10px; overflow-x: auto; font-family: monospace; font-size: 13px; margin-top: 15px;">{{ calendar }}</pre>
+</div>
+
+{% endblock %}

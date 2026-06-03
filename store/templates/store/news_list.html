@@ -1,0 +1,43 @@
+{% extends 'store/base.html' %}
+{% block title %}Новости компании — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 900px; margin: 0 auto;">
+    <h1 style="margin-bottom: 30px; color: #667eea;">📰 Новости компании</h1>
+
+    {% if articles %}
+    <div class="grid-2">
+        {% for a in articles %}
+        <div class="card" style="padding: 0; overflow: hidden;">
+            {% if a.image %}
+                <img src="{{ a.image.url }}" alt="{{ a.title }}" 
+                     style="width: 100%; height: 200px; object-fit: cover;">
+            {% else %}
+                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                            display: flex; align-items: center; justify-content: center; font-size: 60px; color: white;">
+                    📰
+                </div>
+            {% endif %}
+            <div style="padding: 25px;">
+                <h3 style="margin-bottom: 10px; color: #333;">{{ a.title }}</h3>
+                <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
+                    📅 {{ a.published_date|date:"d/m/Y" }}
+                </p>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">{{ a.summary }}</p>
+                <a href="{% url 'store:news_detail' a.pk %}" class="btn btn-primary">
+                    Читать далее →
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 60px 30px;">
+        <div style="font-size: 80px; margin-bottom: 20px;">📰</div>
+        <h2 style="color: #666;">Новостей пока нет</h2>
+        <p style="color: #999; margin: 15px 0;">Заходите позже!</p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

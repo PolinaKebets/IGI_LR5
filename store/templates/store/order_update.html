@@ -1,0 +1,73 @@
+{% extends 'store/base.html' %}
+{% block title %}Обновление заказа №{{ order.id }} — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <a href="{% url 'store:order_detail' order.pk %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к заказу
+    </a>
+
+    <div class="card" style="padding: 35px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">✏️</div>
+            <h1 style="color: #667eea; margin-bottom: 10px;">Обновление заказа №{{ order.id }}</h1>
+            <p style="color: #888;">Измените статус заказа</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                <p style="font-size: 14px; color: #888; margin-bottom: 10px;">📊 Текущий статус</p>
+                {% if order.status == 'pending' %}
+                    <span style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; 
+                           padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">
+                        ⏳ Ожидает
+                    </span>
+                {% elif order.status == 'processing' %}
+                    <span style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; 
+                           padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">
+                        🔄 В обработке
+                    </span>
+                {% elif order.status == 'shipped' %}
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+                           padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">
+                        📦 Отправлен
+                    </span>
+                {% elif order.status == 'delivered' %}
+                    <span style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; 
+                           padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">
+                        ✅ Доставлен
+                    </span>
+                {% elif order.status == 'cancelled' %}
+                    <span style="background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); color: white; 
+                           padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">
+                        ❌ Отменён
+                    </span>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #555; font-size: 15px;">
+                    📝 Новый статус
+                </label>
+                <select name="status" style="width: 100%; padding: 14px 18px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 15px;">
+                    {% for value, label in status_choices %}
+                    <option value="{{ value }}" {% if order.status == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button type="submit" class="btn btn-primary" style="flex: 1; padding: 15px 30px; font-size: 16px;">
+                    💾 Обновить статус
+                </button>
+                <a href="{% url 'store:order_detail' order.pk %}" class="btn btn-secondary" style="padding: 15px 30px;">
+                    Отмена
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

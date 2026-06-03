@@ -1,0 +1,2211 @@
+/Users/v.v.efremenko/Documents/bsuir/igi/LR5/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+DEBUG (0.000) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message" FROM "django_admin_log" ORDER BY "django_admin_log"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "auth_group"."id", "auth_group"."name" FROM "auth_group" ORDER BY "auth_group"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" ORDER BY "auth_user"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 1; args=(1,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 1 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 2; args=(2,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 2 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(2,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 3; args=(3,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 3 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 4; args=(4,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 4 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 5; args=(5,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 5 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 6; args=(6,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 6 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 7; args=(7,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 7 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 8; args=(8,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 8 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 9; args=(9,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 9 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 10; args=(10,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 10 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 11; args=(11,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 11 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(11,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 12; args=(12,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 12 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(12,); alias=default
+DEBUG (0.000) SELECT "auth_group"."id" FROM "auth_group" INNER JOIN "auth_user_groups" ON ("auth_group"."id" = "auth_user_groups"."group_id") WHERE "auth_user_groups"."user_id" = 13; args=(13,); alias=default
+DEBUG (0.000) SELECT "auth_permission"."id" FROM "auth_permission" INNER JOIN "auth_user_user_permissions" ON ("auth_permission"."id" = "auth_user_user_permissions"."permission_id") INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_user_user_permissions"."user_id" = 13 ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(13,); alias=default
+DEBUG (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" ORDER BY "django_session"."session_key" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_company"."id", "store_company"."name", "store_company"."description", "store_company"."logo", "store_company"."video_url", "store_company"."founded_year", "store_company"."email", "store_company"."phone", "store_company"."address" FROM "store_company" ORDER BY "store_company"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_companyhistory"."id", "store_companyhistory"."company_id", "store_companyhistory"."year", "store_companyhistory"."event" FROM "store_companyhistory" ORDER BY "store_companyhistory"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_article"."id", "store_article"."title", "store_article"."summary", "store_article"."content", "store_article"."image", "store_article"."published_date", "store_article"."updated_date", "store_article"."is_published" FROM "store_article" ORDER BY "store_article"."id" ASC; args=(); alias=default
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$WNoPMlwlzVRMviHEdJ7trC$XhICtgQiziUiEr8HTyGR2wxFzRHXIlymJN7G1xm7600=",
+    "last_login": "2026-06-03T21:04:23.136Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-06-03T18:04:36.841Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$SXhUdLgBE2j9TjJHLmFqpJ$tlSN2T/STx2eC+dqnclBU2ujQo8X061g94/kNMjBCu8=",
+    "last_login": "2026-06-03T20:12:28.569Z",
+    "is_superuser": false,
+    "username": "customer",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:11:26.637Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$I5opnIdH6RdldZ09AYWAyl$ftFpTNvFLl1Ok78FT6BLgT/3d0xTXOgxOb+MaA2I+BQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "employee",
+    "first_name": "",
+    "last_name": "",
+    "email": "employee@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:11:27.049Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer1",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer1@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.403Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer2",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer2@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.403Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer3",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer3@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.404Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer4",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer4@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.404Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer5",
+    "first_name": "",
+    "last_name": "",
+    "email": "customer5@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.404Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "employee1",
+    "first_name": "",
+    "last_name": "",
+    "email": "employee1@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.405Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "employee2",
+    "first_name": "",
+    "last_name": "",
+    "email": "employee2@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:15:06.405Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$bu0SaQ2eSRs4oEoR08vEdF$QsHSvt+54pfil5lvCWisxtZCxNUSIowwP/x8ZhXVZts=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "emp1",
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "email": "emp1@chemshop.by",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:57:56.190Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$SzDdQhAeoJFlONnbd6jkbG$ydS85vIgKM+teMe2voumA7ELAF3nSyzr+Hn7iRnweoM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "emp2",
+    "first_name": "Анна",
+    "last_name": "Петрова",
+    "email": "emp2@chemshop.by",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:57:56.379Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VCscungecna1KVp9tUjHet$NxHeEXRNOkPaEv6NydPkoGkLZ2xY5sO1LhWe/jgLYM4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "emp3",
+    "first_name": "Петр",
+    "last_name": "Сидоров",
+    "email": "emp3@chemshop.by",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-03T20:57:56.564Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hc87wo7e3bahqm0gli22vdmctlxfkbjg",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQAP9lz6ZpSx8LR-9-A9lttxY1kFA4Gf_dkHDQ68xk3jDSvtVxb7KOU4YBDFx-GVN6ynyI_KD5vqi0zNs6sToSddqmbkuW1_Vs_waVWoUBQvbGimYKRSfnbcJiLHkqpKMVHZmRPfVsA6OzvYg2jlm6DiN6xAyfL-1GN_Y:1wUpyz:g9bF0QdH8z2U5A8JEL4bMsUdiK3DE0JEagtHFW_c2I0",
+    "expire_date": "2026-06-17T18:06:25.296Z"
+  }
+},
+{
+  "model": "store.company",
+  "pk": 1,
+  "fields": {
+    "name": "ChemShop — магазин бытовой химии",
+    "description": "Демонстрационная компания для ЛР №5.",
+    "logo": "",
+    "video_url": null,
+    "founded_year": 2015,
+    "email": "info@chemshop.example.com",
+    "phone": "+375 (29) 777-77-77",
+    "address": "г. Минск, ул. Примерная, 1"
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 1,
+  "fields": {
+    "company": 1,
+    "year": 2015,
+    "event": "Открытие интернет-магазина."
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 2,
+  "fields": {
+    "company": 1,
+    "year": 2018,
+    "event": "Расширение ассортимента и поставщиков."
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 3,
+  "fields": {
+    "company": 1,
+    "year": 2022,
+    "event": "Запуск программы лояльности и промокодов."
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 4,
+  "fields": {
+    "company": 1,
+    "year": 2025,
+    "event": "Оптимизация логистики и самовывоза."
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 5,
+  "fields": {
+    "company": 1,
+    "year": 2010,
+    "event": "Открытие первого магазина"
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 6,
+  "fields": {
+    "company": 1,
+    "year": 2012,
+    "event": "Запуск интернет-магазина"
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 7,
+  "fields": {
+    "company": 1,
+    "year": 2020,
+    "event": "Внедрение системы лояльности"
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 8,
+  "fields": {
+    "company": 1,
+    "year": 2024,
+    "event": "Запуск мобильной версии сайта"
+  }
+},
+{
+  "model": "store.companyhistory",
+  "pk": 9,
+  "fields": {
+    "company": 1,
+    "year": 2026,
+    "event": "Новая система доставки"
+  }
+},
+{
+  "model": "store.article",
+  "pk": 11,
+  "fields": {
+    "title": "Новость №1",
+    "summary": "Коротко о новости №1 (демо).",
+    "content": "Полный текст новости №1. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": DEBUG (0.000) SELECT "store_glossary"."id", "store_glossary"."question", "store_glossary"."answer", "store_glossary"."added_date" FROM "store_glossary" ORDER BY "store_glossary"."id" ASC; args=(); alias=default
+"2026-06-03T20:15:06.408Z",
+    "updated_date": "2026-06-03T20:15:06.408Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 12,
+  "fields": {
+    "title": "Новость №2",
+    "summary": "Коротко о новости №2 (демо).",
+    "content": "Полный текст новости №2. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.409Z",
+    "updated_date": "2026-06-03T20:15:06.409Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 13,
+  "fields": {
+    "title": "Новость №3",
+    "summary": "Коротко о новости №3 (демо).",
+    "content": "Полный текст новости №3. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.409Z",
+    "updated_date": "2026-06-03T20:15:06.409Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 14,
+  "fields": {
+    "title": "Новость №4",
+    "summary": "Коротко о новости №4 (демо).",
+    "content": "Полный текст новости №4. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.410Z",
+    "updated_date": "2026-06-03T20:15:06.410Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 15,
+  "fields": {
+    "title": "Новость №5",
+    "summary": "Коротко о новости №5 (демо).",
+    "content": "Полный текст новости №5. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.410Z",
+    "updated_date": "2026-06-03T20:15:06.410Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 16,
+  "fields": {
+    "title": "Новость №6",
+    "summary": "Коротко о новости №6 (демо).",
+    "content": "Полный текст новости №6. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.411Z",
+    "updated_date": "2026-06-03T20:15:06.411Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 17,
+  "fields": {
+    "title": "Новость №7",
+    "summary": "Коротко о новости №7 (демо).",
+    "content": "Полный текст новости №7. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.411Z",
+    "updated_date": "2026-06-03T20:15:06.411Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 18,
+  "fields": {
+    "title": "Новость №8",
+    "summary": "Коротко о новости №8 (демо).",
+    "content": "Полный текст новости №8. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.411Z",
+    "updated_date": "2026-06-03T20:15:06.411Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 19,
+  "fields": {
+    "title": "Новость №9",
+    "summary": "Коротко о новости №9 (демо).",
+    "content": "Полный текст новости №9. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.412Z",
+    "updated_date": "2026-06-03T20:15:06.412Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 20,
+  "fields": {
+    "title": "Новость №10",
+    "summary": "Коротко о новости №10 (демо).",
+    "content": "Полный текст новости №10. Дата: 03/06/2026.",
+    "image": "",
+    "published_date": "2026-06-03T20:15:06.412Z",
+    "updated_date": "2026-06-03T20:15:06.412Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 21,
+  "fields": {
+    "title": "Новое поступление бытовой химии",
+    "summary": "Расширили ассортимент экологичных средств",
+    "content": "Мы рады сообщить о поступлении новой линейки экологичных средств для уборки дома...",
+    "image": "",
+    "published_date": "2026-06-03T20:57:56.058Z",
+    "updated_date": "2026-06-03T20:57:56.058Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 22,
+  "fields": {
+    "title": "Скидки на моющие средства",
+    "summary": "Скидки до 30% наselected товары",
+    "content": "Только в этом месяце скидки на моющие средства от ведущих производителей...",
+    "image": "",
+    "published_date": "2026-06-03T20:57:56.062Z",
+    "updated_date": "2026-06-03T20:57:56.062Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.article",
+  "pk": 23,
+  "fields": {
+    "title": "Открытие нового магазина",
+    "summary": "Третий магазин в сети Чистый Дом",
+    "content": "Приглашаем посетить наш новый магазин по адресу ул. Притыцкого 15...",
+    "image": "",
+    "published_date": "2026-06-03T20:57:56.067Z",
+    "updated_date": "2026-06-03T20:57:56.067Z",
+    "is_published": true
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 1,
+  "fields": {
+    "question": "Термин 1",
+    "answer": "Определение/ответ для термина 1.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 2,
+  "fields": {
+    "question": "Термин 2",
+    "answer": "Определение/ответ для термина 2.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 3,
+  "fields": {
+    "question": "Термин 3",
+    "answer": "Определение/ответ для термина 3.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 4,
+  "fields": {
+    "question": "Термин 4",
+    "answer": "Определение/ответ для термина 4.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 5,
+  "fields": {
+    "question": "Термин 5",
+    "answer": "Определение/ответ для термина 5.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 6,
+  "fields": {
+    "question": "Термин 6",
+    "answer": "Определение/ответ для термина 6.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 7,
+  "fields": {
+    "question": "Термин 7",
+    "answer": "Определение/ответ для термина 7.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 8,
+  "fields": {
+    "question": "Термин 8",
+    "answer": "Определение/ответ для термина 8.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 9,
+  "fields": {
+    "question": "Термин 9",
+    "answer": "Определение/ответ для термина 9.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 10,
+  "fields": {
+    "question": "Термин 10",
+    "answer": "Определение/ответ для термина 10.",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 11,
+  "fields": {
+    "question": "Что такое ПАВ?",
+    "answer": "Поверхностно-активные вещества - компоненты моющих средств, отвечающие за очищение...",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 12,
+  "fields": {
+    "question": "Как хранить бытовую химию?",
+    "answer": "Храните в сухом прохладном месте в оригинальной упаковке...",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 13,
+  "fields": {
+    "question": "Что такое эко-средства?",
+    "answer": "Средства с биоразлагаемыми компонентами, безопасные для окружающей среды...",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.glossary",
+  "pk": 14,
+  "fields": {
+    "question"DEBUG (0.000) SELECT "store_contact"."id", "store_contact"."first_name", "store_contact"."last_name", "store_contact"."position", "store_contact"."description", "store_contact"."phone", "store_contact"."email", "store_contact"."photo" FROM "store_contact" ORDER BY "store_contact"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_vacancy"."id", "store_vacancy"."title", "store_vacancy"."description", "store_vacancy"."salary_min", "store_vacancy"."salary_max", "store_vacancy"."is_active", "store_vacancy"."created_date" FROM "store_vacancy" ORDER BY "store_vacancy"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_review"."id", "store_review"."user_id", "store_review"."name", "store_review"."rating", "store_review"."text", "store_review"."date" FROM "store_review" ORDER BY "store_review"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_promocode"."id", "store_promocode"."code", "store_promocode"."description", "store_promocode"."discount_percent", "store_promocode"."valid_from", "store_promocode"."valid_to", "store_promocode"."is_active" FROM "store_promocode" ORDER BY "store_promocode"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id", "store_manufacturer"."name", "store_manufacturer"."country", "store_manufacturer"."website", "store_manufacturer"."description" FROM "store_manufacturer" ORDER BY "store_manufacturer"."id" ASC; args=(); alias=default
+: "Как выбрать средство для стирки?",
+    "answer": "Выбирайте исходя из типа ткани, степени загрязнения и наличия аллергии...",
+    "added_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 1,
+  "fields": {
+    "first_name": "Иван",
+    "last_name": "Петров",
+    "position": "Менеджер",
+    "description": "Консультации по товарам",
+    "phone": "+375 (29) 111-11-11",
+    "email": "ivan.petrov@example.com",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 2,
+  "fields": {
+    "first_name": "Анна",
+    "last_name": "Сидорова",
+    "position": "Оператор",
+    "description": "Поддержка клиентов",
+    "phone": "+375 (29) 222-22-22",
+    "email": "anna.sidorova@example.com",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 3,
+  "fields": {
+    "first_name": "Олег",
+    "last_name": "Иванов",
+    "position": "Логист",
+    "description": "Самовывоз и доставка",
+    "phone": "+375 (25) 333-33-33",
+    "email": "oleg.ivanov@example.com",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 4,
+  "fields": {
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "position": "Директор магазина",
+    "description": "Общие вопросы",
+    "phone": "+375 (29) 111-22-33",
+    "email": "ivanov@chemshop.by",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 5,
+  "fields": {
+    "first_name": "Анна",
+    "last_name": "Петрова",
+    "position": "Менеджер по продажам",
+    "description": "Консультации по товарам",
+    "phone": "+375 (29) 222-33-44",
+    "email": "petrova@chemshop.by",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 6,
+  "fields": {
+    "first_name": "Петр",
+    "last_name": "Сидоров",
+    "position": "Складской работник",
+    "description": "Вопросы по наличию",
+    "phone": "+375 (29) 333-44-55",
+    "email": "sidorov@chemshop.by",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 7,
+  "fields": {
+    "first_name": "Елена",
+    "last_name": "Козлова",
+    "position": "Бухгалтер",
+    "description": "Финансовые вопросы",
+    "phone": "+375 (29) 444-55-66",
+    "email": "kozlova@chemshop.by",
+    "photo": ""
+  }
+},
+{
+  "model": "store.contact",
+  "pk": 8,
+  "fields": {
+    "first_name": "Андрей",
+    "last_name": "Новиков",
+    "position": "Курьер",
+    "description": "Доставка заказов",
+    "phone": "+375 (29) 555-66-77",
+    "email": "novikov@chemshop.by",
+    "photo": ""
+  }
+},
+{
+  "model": "store.vacancy",
+  "pk": 1,
+  "fields": {
+    "title": "Менеджер по продажам",
+    "description": "Работа с заказами и клиентами.",
+    "salary_min": null,
+    "salary_max": null,
+    "is_active": true,
+    "created_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.vacancy",
+  "pk": 2,
+  "fields": {
+    "title": "Складской работник",
+    "description": "Комплектация и учет товара.",
+    "salary_min": null,
+    "salary_max": null,
+    "is_active": true,
+    "created_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.vacancy",
+  "pk": 3,
+  "fields": {
+    "title": "Курьер",
+    "description": "Доставка заказов.",
+    "salary_min": null,
+    "salary_max": null,
+    "is_active": false,
+    "created_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.vacancy",
+  "pk": 4,
+  "fields": {
+    "title": "Продавец-консультант",
+    "description": "Консультация покупателей, выкладка товара",
+    "salary_min": "2000.00",
+    "salary_max": "3000.00",
+    "is_active": true,
+    "created_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.vacancy",
+  "pk": 5,
+  "fields": {
+    "title": "Менеджер по закупкам",
+    "description": "Работа с поставщиками",
+    "salary_min": "2500.00",
+    "salary_max": "3500.00",
+    "is_active": true,
+    "created_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.review",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "name": "Покупатель 1",
+    "rating": 5,
+    "text": "Демо-отзыв №1. Всё понравилось.",
+    "date": "2026-06-03T20:15:06.440Z"
+  }
+},
+{
+  "model": "store.review",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "name": "Покупатель 2",
+    "rating": 4,
+    "text": "Демо-отзыв №2. Всё понравилось.",
+    "date": "2026-06-03T20:15:06.440Z"
+  }
+},
+{
+  "model": "store.review",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "name": "Покупатель 3",
+    "rating": 5,
+    "text": "Демо-отзыв №3. Всё понравилось.",
+    "date": "2026-06-03T20:15:06.441Z"
+  }
+},
+{
+  "model": "store.review",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "name": "Покупатель 4",
+    "rating": 3,
+    "text": "Демо-отзыв №4. Всё понравилось.",
+    "date": "2026-06-03T20:15:06.441Z"
+  }
+},
+{
+  "model": "store.review",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "name": "Покупатель 5",
+    "rating": 4,
+    "text": "Демо-отзыв №5. Всё понравилось.",
+    "date": "2026-06-03T20:15:06.442Z"
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 1,
+  "fields": {
+    "code": "WELCOME10",
+    "description": "Скидка для новых клиентов",
+    "discount_percent": 10,
+    "valid_from": "2026-05-04",
+    "valid_to": "2027-06-03",
+    "is_active": true
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 2,
+  "fields": {
+    "code": "SPRING15",
+    "description": "Весенняя акция",
+    "discount_percent": 15,
+    "valid_from": "2026-05-24",
+    "valid_to": "2026-06-23",
+    "is_active": true
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 3,
+  "fields": {
+    "code": "OLD5",
+    "description": "Архивный промокод",
+    "discount_percent": 5,
+    "valid_from": "2025-04-29",
+    "valid_to": "2025-11-15",
+    "is_active": false
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 4,
+  "fields": {
+    "code": "SUMMER2026",
+    "description": "Летняя акция",
+    "discount_percent": 15,
+    "valid_from": "2026-06-01",
+    "valid_to": "2026-08-31",
+    "is_active": true
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 5,
+  "fields": {
+    "code": "CLEAN20",
+    "description": "Скидка на чистящие средства",
+    "discount_percent": 20,
+    "valid_from": "2026-01-01",
+    "valid_to": "2026-12-31",
+    "is_active": true
+  }
+},
+{
+  "model": "store.promocode",
+  "pk": 6,
+  "fields": {
+    "code": "NEWYEAR",
+    "description": "Новогодняя скидка",
+    "discount_percent": 25,
+    "valid_from": "2026-12-01",
+    "valid_to": "2027-01-15",
+    "is_active": true
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 1,
+  "fields": {
+    "name": "CleanPro",
+    "country": "Польша",
+    "website": "https://example.com/cleanpro",
+    "description": "Демо изготовитель."
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 2,
+  "fields": {
+    "name": "EcoHome",
+    "country": "Германия",
+    "website": "https://example.com/ecohome",
+    "description": "Демо изготовитель."
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 3,
+  "fields": {
+    "name": "FreshLab",
+    "country": "Беларусь",
+    "website": "https://example.com/freshlab",
+    "description": "Демо изготовитель."
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 4,
+  "fields": {
+    "name": "Procter & Gamble",
+    "country": "США",
+    "website": "https://www.pg.com",
+    "description": ""
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 5,
+  "fields": {
+    "name": "Henkel",
+    "country": "Германия",
+    "website": "https://www.henkel.com",
+    "description": ""
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 6,
+  "fields": {
+    "name": "Unilever",
+    "country": DEBUG (0.000) SELECT "store_productcategory"."id", "store_productcategory"."name", "store_productcategory"."description" FROM "store_productcategory" ORDER BY "store_productcategory"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_product"."id", "store_product"."name", "store_product"."category_id", "store_product"."price", "store_product"."unit", "store_product"."description", "store_product"."image", "store_product"."stock_quantity", "store_product"."is_available", "store_product"."created_date", "store_product"."updated_date" FROM "store_product" ORDER BY "store_product"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 1; args=(1,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 2; args=(2,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 3; args=(3,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 4; args=(4,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 5; args=(5,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 6; args=(6,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 7; args=(7,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 8; args=(8,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 9; args=(9,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 10; args=(10,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 11; args=(11,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 12; args=(12,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 13; args=(13,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 14; args=(14,); alias=default
+"Великобритания",
+    "website": "https://www.unilever.com",
+    "description": ""
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 7,
+  "fields": {
+    "name": "Nevskaya Kosmetika",
+    "country": "Россия",
+    "website": "https://www.nevskaya.ru",
+    "description": ""
+  }
+},
+{
+  "model": "store.manufacturer",
+  "pk": 8,
+  "fields": {
+    "name": "Sarma",
+    "country": "Беларусь",
+    "website": "https://www.sarma.by",
+    "description": ""
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Средства для кухни",
+    "description": "Гели, спреи, чистящие средства"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Стирка",
+    "description": "Порошки, гели, кондиционеры"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Санузел",
+    "description": "Средства от налета и извести"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Стиральные порошки",
+    "description": "Средства для стирки белья"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 5,
+  "fields": {
+    "name": "Средства для мытья посуды",
+    "description": "Жидкости и гели для посуды"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Чистящие средства",
+    "description": "Для кухни, ванной, унитаза"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 7,
+  "fields": {
+    "name": "Освежители воздуха",
+    "description": "Аэрозоли и диффузоры"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 8,
+  "fields": {
+    "name": "Средства для стирки",
+    "description": "Гели, капсулы, кондиционеры"
+  }
+},
+{
+  "model": "store.productcategory",
+  "pk": 9,
+  "fields": {
+    "name": "Дезинфицирующие средства",
+    "description": "Антисептики и дезинфектанты"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "name": "Гель для мытья посуды",
+    "category": 1,
+    "price": "6.50",
+    "unit": "l",
+    "description": "Демо-описание товара 1.",
+    "image": "",
+    "stock_quantity": 9,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.422Z",
+    "updated_date": "2026-06-03T20:15:06.422Z",
+    "manufacturers": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "name": "Спрей для стекол",
+    "category": 1,
+    "price": "5.20",
+    "unit": "ml",
+    "description": "Демо-описание товара 2.",
+    "image": "",
+    "stock_quantity": 57,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.424Z",
+    "updated_date": "2026-06-03T20:15:06.424Z",
+    "manufacturers": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "name": "Порошок стиральный",
+    "category": 1,
+    "price": "18.90",
+    "unit": "kg",
+    "description": "Демо-описание товара 3.",
+    "image": "",
+    "stock_quantity": 44,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.426Z",
+    "updated_date": "2026-06-03T20:15:06.426Z",
+    "manufacturers": [
+      1
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "name": "Кондиционер для белья",
+    "category": 1,
+    "price": "12.40",
+    "unit": "l",
+    "description": "Демо-описание товара 4.",
+    "image": "",
+    "stock_quantity": 54,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.427Z",
+    "updated_date": "2026-06-03T20:15:06.427Z",
+    "manufacturers": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "name": "Средство для сантехники",
+    "category": 3,
+    "price": "9.90",
+    "unit": "l",
+    "description": "Демо-описание товара 5.",
+    "image": "",
+    "stock_quantity": 55,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.428Z",
+    "updated_date": "2026-06-03T20:15:06.428Z",
+    "manufacturers": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "name": "Отбеливатель",
+    "category": 2,
+    "price": "7.30",
+    "unit": "l",
+    "description": "Демо-описание товара 6.",
+    "image": "",
+    "stock_quantity": 65,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.429Z",
+    "updated_date": "2026-06-03T20:15:06.429Z",
+    "manufacturers": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "name": "Универсальный очиститель",
+    "category": 1,
+    "price": "8.10",
+    "unit": "l",
+    "description": "Демо-описание товара 7.",
+    "image": "",
+    "stock_quantity": 21,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.429Z",
+    "updated_date": "2026-06-03T20:15:06.429Z",
+    "manufacturers": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "name": "Средство для плит",
+    "category": 2,
+    "price": "6.90",
+    "unit": "ml",
+    "description": "Демо-описание товара 8.",
+    "image": "",
+    "stock_quantity": 62,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.430Z",
+    "updated_date": "2026-06-03T20:15:06.430Z",
+    "manufacturers": [
+      1
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 9,
+  "fields": {
+    "name": "Мыло жидкое",
+    "category": 1,
+    "price": "4.60",
+    "unit": "ml",
+    "description": "Демо-описание товара 9.",
+    "image": "",
+    "stock_quantity": 27,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.431Z",
+    "updated_date": "2026-06-03T20:15:06.431Z",
+    "manufacturers": [
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 10,
+  "fields": {
+    "name": "Освежитель воздуха",
+    "category": 2,
+    "price": "7.80",
+    "unit": "ml",
+    "description": "Демо-описание товара 10.",
+    "image": "",
+    "stock_quantity": 7,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.432Z",
+    "updated_date": "2026-06-03T20:15:06.432Z",
+    "manufacturers": [
+      1
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 11,
+  "fields": {
+    "name": "Средство для полов",
+    "category": 1,
+    "price": "10.00",
+    "unit": "l",
+    "description": "Демо-описание товара 11.",
+    "image": "",
+    "stock_quantity": 9,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.433Z",
+    "updated_date": "2026-06-03T20:15:06.433Z",
+    "manufacturers": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 12,
+  "fields": {
+    "name": "Пятновыводитель",
+    "category": 3,
+    "price": "8.70",
+    "unit": "ml",
+    "description": "Демо-описание товара 12.",
+    "image": "",
+    "stock_quantity": 12,
+    "is_available": true,
+    "created_date": "2026-06-03T20:15:06.434Z",
+    "updated_date": "2026-06-03T20:15:06.434Z",
+    "manufacturers": [
+      3
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 13,
+  "fields": {
+    "name": "Tide Автомат",
+    "category": 4,
+    "price": "15.50",
+    "unit": "pcs",
+    "description": "Стиральный порошок",
+    "image": "",
+    "stock_quantity": 50,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.146Z",
+    "updated_date": "2026-06-03T20:57:56.146Z",
+    "manufacturers": [
+      4
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 14,
+  "fields": {
+    "name": "Ariel Горный родник",
+    "category": 4,
+    "price": "14.20",
+    "unit": "pcs",
+    "description": "Стиральный порошок",
+    "image": "",
+    DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 15; args=(15,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 16; args=(16,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 17; args=(17,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 18; args=(18,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 19; args=(19,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 20; args=(20,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 21; args=(21,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 22; args=(22,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 23; args=(23,); alias=default
+DEBUG (0.000) SELECT "store_manufacturer"."id" FROM "store_manufacturer" INNER JOIN "store_product_manufacturers" ON ("store_manufacturer"."id" = "store_product_manufacturers"."manufacturer_id") WHERE "store_product_manufacturers"."product_id" = 24; args=(24,); alias=default
+DEBUG (0.000) SELECT "store_pickuppoint"."id", "store_pickuppoint"."address", "store_pickuppoint"."city", "store_pickuppoint"."phone", "store_pickuppoint"."working_hours" FROM "store_pickuppoint" ORDER BY "store_pickuppoint"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_customer"."id", "store_customer"."user_id", "store_customer"."phone", "store_customer"."address", "store_customer"."city", "store_customer"."birth_date", "store_customer"."preferred_pickup_id" FROM "store_customer" ORDER BY "store_customer"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_employee"."id", "store_employee"."user_id", "store_employee"."phone", "store_employee"."role", "store_employee"."birth_date", "store_employee"."hire_date" FROM "store_employee" ORDER BY "store_employee"."id" ASC; args=(); alias=default
+DEBUG (0.000) SELECT "store_order"."id", "store_order"."customer_id", "store_order"."employee_id", "store_order"."promo_code_id", "store_order"."pickup_point_id", "store_order"."status", "store_order"."sale_date", "store_order"."delivery_date" FROM "store_order" ORDER BY "store_order"."id" ASC; args=(); alias=default
+"stock_quantity": 45,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.149Z",
+    "updated_date": "2026-06-03T20:57:56.149Z",
+    "manufacturers": [
+      4
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 15,
+  "fields": {
+    "name": "Fairy Original",
+    "category": 5,
+    "price": "5.90",
+    "unit": "ml",
+    "description": "Средство для посуды",
+    "image": "",
+    "stock_quantity": 100,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.152Z",
+    "updated_date": "2026-06-03T20:57:56.152Z",
+    "manufacturers": [
+      4
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 16,
+  "fields": {
+    "name": "AOS Лимон",
+    "category": 5,
+    "price": "4.50",
+    "unit": "ml",
+    "description": "Средство для посуды",
+    "image": "",
+    "stock_quantity": 80,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.154Z",
+    "updated_date": "2026-06-03T20:57:56.155Z",
+    "manufacturers": [
+      4
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 17,
+  "fields": {
+    "name": "Domestos Pine Fresh",
+    "category": 6,
+    "price": "7.80",
+    "unit": "ml",
+    "description": "Чистящее средство",
+    "image": "",
+    "stock_quantity": 60,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.157Z",
+    "updated_date": "2026-06-03T20:57:56.157Z",
+    "manufacturers": [
+      6
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 18,
+  "fields": {
+    "name": "Cif Cream",
+    "category": 6,
+    "price": "8.50",
+    "unit": "g",
+    "description": "Чистящий крем",
+    "image": "",
+    "stock_quantity": 55,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.159Z",
+    "updated_date": "2026-06-03T20:57:56.159Z",
+    "manufacturers": [
+      6
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 19,
+  "fields": {
+    "name": "Bref Power",
+    "category": 6,
+    "price": "6.20",
+    "unit": "pcs",
+    "description": "Для унитаза",
+    "image": "",
+    "stock_quantity": 70,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.162Z",
+    "updated_date": "2026-06-03T20:57:56.162Z",
+    "manufacturers": [
+      5
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 20,
+  "fields": {
+    "name": "Glade Lavender",
+    "category": 7,
+    "price": "9.90",
+    "unit": "ml",
+    "description": "Освежитель воздуха",
+    "image": "",
+    "stock_quantity": 40,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.164Z",
+    "updated_date": "2026-06-03T20:57:56.164Z",
+    "manufacturers": [
+      5
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 21,
+  "fields": {
+    "name": "Lenor Кондиционер",
+    "category": 8,
+    "price": "11.50",
+    "unit": "ml",
+    "description": "Кондиционер для белья",
+    "image": "",
+    "stock_quantity": 65,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.169Z",
+    "updated_date": "2026-06-03T20:57:56.169Z",
+    "manufacturers": [
+      4
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 22,
+  "fields": {
+    "name": "Persil Color",
+    "category": 8,
+    "price": "18.90",
+    "unit": "ml",
+    "description": "Гель для стирки",
+    "image": "",
+    "stock_quantity": 35,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.175Z",
+    "updated_date": "2026-06-03T20:57:56.175Z",
+    "manufacturers": [
+      5
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 23,
+  "fields": {
+    "name": "Detox Дезинфектор",
+    "category": 9,
+    "price": "12.00",
+    "unit": "ml",
+    "description": "Дезинфицирующее средство",
+    "image": "",
+    "stock_quantity": 50,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.178Z",
+    "updated_date": "2026-06-03T20:57:56.178Z",
+    "manufacturers": [
+      8
+    ]
+  }
+},
+{
+  "model": "store.product",
+  "pk": 24,
+  "fields": {
+    "name": "Sarma Актив",
+    "category": 4,
+    "price": "10.50",
+    "unit": "pcs",
+    "description": "Стиральный порошок",
+    "image": "",
+    "stock_quantity": 90,
+    "is_available": true,
+    "created_date": "2026-06-03T20:57:56.180Z",
+    "updated_date": "2026-06-03T20:57:56.180Z",
+    "manufacturers": [
+      8
+    ]
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 1,
+  "fields": {
+    "address": "ул. Ленина, 10",
+    "city": "Минск",
+    "phone": "+375 (25) 444-44-44",
+    "working_hours": "10:00-20:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 2,
+  "fields": {
+    "address": "пр-т Независимости, 55",
+    "city": "Минск",
+    "phone": "+375 (29) 555-55-55",
+    "working_hours": "09:00-21:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 3,
+  "fields": {
+    "address": "ул. Советская, 1",
+    "city": "Гродно",
+    "phone": "+375 (25) 666-66-66",
+    "working_hours": "10:00-19:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 4,
+  "fields": {
+    "address": "пр. Независимости, 100",
+    "city": "Минск",
+    "phone": "+375 (29) 100-00-00",
+    "working_hours": "Пн-Вс 9:00-21:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 5,
+  "fields": {
+    "address": "ул. Притыцкого, 15",
+    "city": "Минск",
+    "phone": "+375 (29) 200-00-00",
+    "working_hours": "Пн-Вс 10:00-22:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 6,
+  "fields": {
+    "address": "ул. Советская, 50",
+    "city": "Гомель",
+    "phone": "+375 (29) 300-00-00",
+    "working_hours": "Пн-Сб 9:00-20:00"
+  }
+},
+{
+  "model": "store.pickuppoint",
+  "pk": 7,
+  "fields": {
+    "address": "пр. Московский, 25",
+    "city": "Брест",
+    "phone": "+375 (29) 400-00-00",
+    "working_hours": "Пн-Вс 9:00-21:00"
+  }
+},
+{
+  "model": "store.customer",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "phone": "+375 (29) 111-11-11",
+    "address": "Адрес клиента 1",
+    "city": "Гродно",
+    "birth_date": "1999-05-20",
+    "preferred_pickup": 3
+  }
+},
+{
+  "model": "store.customer",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "phone": "+375 (29) 222-22-22",
+    "address": "Адрес клиента 2",
+    "city": "Брест",
+    "birth_date": "1995-01-15",
+    "preferred_pickup": 2
+  }
+},
+{
+  "model": "store.customer",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "phone": "+375 (25) 333-33-33",
+    "address": "Адрес клиента 3",
+    "city": "Минск",
+    "birth_date": "1990-09-02",
+    "preferred_pickup": 1
+  }
+},
+{
+  "model": "store.customer",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "phone": "+375 (25) 444-44-44",
+    "address": "Адрес клиента 4",
+    "city": "Брест",
+    "birth_date": "2000-03-11",
+    "preferred_pickup": 1
+  }
+},
+{
+  "model": "store.customer",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "phone": "+375 (29) 555-55-55",
+    "address": "Адрес клиента 5",
+    "city": "Брест",
+    "birth_date": "1998-12-30",
+    "preferred_pickup": 3
+  }
+},
+{
+  "model": "store.employee",
+  "pk": 1,
+  "fields": {
+    "user": 9,
+    "phone": "+375 (25) 333-33-33",
+    "role": "manager",
+    "birth_date": "1992-07-07",
+    "hire_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.employee",
+  "pk": 2,
+  "fields": {
+    "user": 10,
+    "phone": "+375 (25) 444-44-44",
+    "role": "warehouse",
+    "birth_date": "1996-02-17",
+    "hire_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.employee",
+  "pk": 3,
+  "fields": {
+    "user": 11,
+    "phone": "+375 (29) 100-11-22",
+    "role": "manager",
+    "birth_date": "1985-06-15",
+    "hire_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.employee",
+  "pk": 4,
+  "fields": {
+    "user": 12,
+    "phone": "+375 (29) 200-22-33",
+    "role": "admin_role",
+    "birth_date": "1990-03-20",
+    "hire_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.employee",
+  "pk": 5,
+  "fields": {
+    "user": 13,
+    "phone": "+375 (29) 300-33-44",
+    "role": "warehouse",
+    "birth_date": "1988-11-10",
+    "hire_date": "2026-06-03"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 1,
+  "fields": {
+    "customer": 1,
+    "employee": 2,
+    "promo_code": 1,
+    DEBUG (0.000) SELECT "store_orderitem"."id", "store_orderitem"."order_id", "store_orderitem"."product_id", "store_orderitem"."quantity", "store_orderitem"."price_per_unit" FROM "store_orderitem" ORDER BY "store_orderitem"."id" ASC; args=(); alias=default
+"pickup_point": 3,
+    "status": "delivered",
+    "sale_date": "2026-06-03T20:15:06.442Z",
+    "delivery_date": "2026-06-05T20:15:06.442Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 2,
+  "fields": {
+    "customer": 1,
+    "employee": 1,
+    "promo_code": null,
+    "pickup_point": 3,
+    "status": "delivered",
+    "sale_date": "2026-06-03T20:15:06.444Z",
+    "delivery_date": "2026-06-04T20:15:06.444Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 3,
+  "fields": {
+    "customer": 2,
+    "employee": 1,
+    "promo_code": null,
+    "pickup_point": 2,
+    "status": "pending",
+    "sale_date": "2026-06-03T20:15:06.445Z",
+    "delivery_date": "2026-06-09T20:15:06.444Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 4,
+  "fields": {
+    "customer": 2,
+    "employee": 2,
+    "promo_code": 1,
+    "pickup_point": 2,
+    "status": "delivered",
+    "sale_date": "2026-06-03T20:15:06.445Z",
+    "delivery_date": "2026-06-07T20:15:06.445Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 5,
+  "fields": {
+    "customer": 3,
+    "employee": 1,
+    "promo_code": 1,
+    "pickup_point": 1,
+    "status": "processing",
+    "sale_date": "2026-06-03T20:15:06.445Z",
+    "delivery_date": "2026-06-10T20:15:06.445Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 6,
+  "fields": {
+    "customer": 3,
+    "employee": 2,
+    "promo_code": null,
+    "pickup_point": 1,
+    "status": "delivered",
+    "sale_date": "2026-06-03T20:15:06.446Z",
+    "delivery_date": "2026-06-09T20:15:06.446Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 7,
+  "fields": {
+    "customer": 4,
+    "employee": 1,
+    "promo_code": 2,
+    "pickup_point": 1,
+    "status": "processing",
+    "sale_date": "2026-06-03T20:15:06.446Z",
+    "delivery_date": "2026-06-09T20:15:06.446Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 8,
+  "fields": {
+    "customer": 4,
+    "employee": 1,
+    "promo_code": 2,
+    "pickup_point": 1,
+    "status": "pending",
+    "sale_date": "2026-06-03T20:15:06.447Z",
+    "delivery_date": "2026-06-08T20:15:06.447Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 9,
+  "fields": {
+    "customer": 5,
+    "employee": 1,
+    "promo_code": null,
+    "pickup_point": 3,
+    "status": "pending",
+    "sale_date": "2026-06-03T20:15:06.447Z",
+    "delivery_date": "2026-06-10T20:15:06.447Z"
+  }
+},
+{
+  "model": "store.order",
+  "pk": 10,
+  "fields": {
+    "customer": 5,
+    "employee": 2,
+    "promo_code": 1,
+    "pickup_point": 3,
+    "status": "pending",
+    "sale_date": "2026-06-03T20:15:06.448Z",
+    "delivery_date": "2026-06-10T20:15:06.448Z"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 7,
+    "quantity": 1,
+    "price_per_unit": "8.10"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 4,
+    "quantity": 1,
+    "price_per_unit": "12.40"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "product": 7,
+    "quantity": 4,
+    "price_per_unit": "8.10"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "quantity": 1,
+    "price_per_unit": "18.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 2,
+    "product": 2,
+    "quantity": 3,
+    "price_per_unit": "5.20"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 3,
+    "product": 8,
+    "quantity": 5,
+    "price_per_unit": "6.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 4,
+    "product": 7,
+    "quantity": 5,
+    "price_per_unit": "8.10"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 4,
+    "product": 8,
+    "quantity": 1,
+    "price_per_unit": "6.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 4,
+    "product": 3,
+    "quantity": 2,
+    "price_per_unit": "18.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 4,
+    "product": 6,
+    "quantity": 2,
+    "price_per_unit": "7.30"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 5,
+    "product": 5,
+    "quantity": 4,
+    "price_per_unit": "9.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 5,
+    "product": 2,
+    "quantity": 1,
+    "price_per_unit": "5.20"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 5,
+    "product": 8,
+    "quantity": 2,
+    "price_per_unit": "6.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 5,
+    "product": 7,
+    "quantity": 1,
+    "price_per_unit": "8.10"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 6,
+    "product": 11,
+    "quantity": 2,
+    "price_per_unit": "10.00"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 6,
+    "product": 6,
+    "quantity": 4,
+    "price_per_unit": "7.30"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 6,
+    "product": 5,
+    "quantity": 4,
+    "price_per_unit": "9.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 6,
+    "product": 9,
+    "quantity": 4,
+    "price_per_unit": "4.60"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 7,
+    "product": 9,
+    "quantity": 1,
+    "price_per_unit": "4.60"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 8,
+    "product": 5,
+    "quantity": 4,
+    "price_per_unit": "9.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 8,
+    "product": 9,
+    "quantity": 5,
+    "price_per_unit": "4.60"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 9,
+    "product": 7,
+    "quantity": 3,
+    "price_per_unit": "8.10"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 9,
+    "product": 11,
+    "quantity": 3,
+    "price_per_unit": "10.00"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 9,
+    "product": 3,
+    "quantity": 5,
+    "price_per_unit": "18.90"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 10,
+    "product": 6,
+    "quantity": 5,
+    "price_per_unit": "7.30"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 10,
+    "product": 1,
+    "quantity": 1,
+    "price_per_unit": "6.50"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 10,
+    "product": 12,
+    "quantity": 4,
+    "price_per_unit": "8.70"
+  }
+},
+{
+  "model": "store.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 10,
+    "product": 8,
+    "quantity": 4,
+    "price_per_unit": "6.90"
+  }
+}
+]

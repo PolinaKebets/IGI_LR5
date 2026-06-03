@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Магазин бытовой химии{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333; 
+            min-height: 100vh;
+        }
+
+        /* Time info bar */
+        .time-info { 
+            background: rgba(0,0,0,0.3); 
+            padding: 8px 0; 
+            font-size: 12px;
+            color: rgba(255,255,255,0.9); 
+            text-align: center;
+        }
+
+        /* Header */
+        header { 
+            background: rgba(255,255,255,0.95); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 15px 0; 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        header h1 { 
+            font-size: 28px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        header h1 a { 
+            text-decoration: none; 
+            font-weight: 700;
+        }
+
+        /* Auth links */
+        .auth-links { display: flex; align-items: center; gap: 15px; }
+        .auth-links a { 
+            color: #667eea; 
+            text-decoration: none; 
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .auth-links a:hover { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+        }
+        .auth-links button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .auth-links button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Navigation */
+        nav { 
+            background: rgba(255,255,255,0.9); 
+            padding: 12px 0; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        nav a { 
+            color: #555; 
+            text-decoration: none; 
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        nav a:hover { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        main { padding: 40px 0; min-height: calc(100vh - 200px); }
+
+        /* Messages */
+        .messages { padding: 10px 0; }
+        .message { 
+            padding: 15px 20px; 
+            margin-bottom: 15px; 
+            border-radius: 10px; 
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.success { 
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white; 
+        }
+        .message.error { 
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white; 
+        }
+        .message.warning { 
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white; 
+        }
+        .message.info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+            color: white;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.4);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+        }
+        .btn-danger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(235, 51, 73, 0.4);
+        }
+        .btn-warning {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+        .btn-info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .btn-info:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 12px;
+            border-radius: 15px;
+        }
+
+        /* Grid layouts */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+        /* Forms */
+        input[type="text"], input[type="email"], input[type="password"], 
+        input[type="number"], input[type="date"], input[type="tel"],
+        select, textarea, .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: inherit;
+            background: white;
+        }
+        input:focus, select:focus, textarea:focus, .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 32px; font-weight: 700; }
+        h2 { font-size: 26px; font-weight: 600; }
+        h3 { font-size: 20px; font-weight: 600; }
+
+        /* Footer */
+        footer { 
+            background: rgba(0,0,0,0.2); 
+            color: rgba(255,255,255,0.8); 
+            padding: 30px 0; 
+            text-align: center;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+        }
+        footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+{# --- URL variables --- #}
+{% url 'store:home' as url_home %}
+{% url 'store:product_list' as url_products %}
+{% url 'store:news' as url_news %}
+{% url 'store:about' as url_about %}
+{% url 'store:glossary' as url_glossary %}
+{% url 'store:contacts' as url_contacts %}
+{% url 'store:vacancies' as url_vacancies %}
+{% url 'store:reviews' as url_reviews %}
+{% url 'store:promo_codes' as url_promocodes %}
+{% url 'store:privacy' as url_privacy %}
+{% url 'store:profile' as url_profile %}
+{% url 'store:statistics' as url_statistics %}
+{% url 'store:login' as url_login %}
+{% url 'store:register' as url_register %}
+{% url 'store:logout' as url_logout %}
+
+<div class="time-info">
+    🕐 Минск: {{ now_minsk|date:"d/m/Y H:i" }} ({{ timezone }}) &nbsp;|&nbsp;
+    🌍 UTC: {{ now_utc|date:"d/m/Y H:i" }}
+</div>
+
+<header>
+    <div class="container">
+        <h1><a href="{{ url_home|default:'#' }}">🧪 ХимМаркет</a></h1>
+
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <span style="color:#666;">👤 {{ user.first_name|default:user.username }}</span>
+
+                {% if url_profile %}
+                    <a href="{{ url_profile }}">Профиль</a>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                    {% if url_statistics %}
+                        <a href="{{ url_statistics }}">Статистика</a>
+                    {% endif %}
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+
+                {% if url_logout %}
+                    <form method="post" action="{{ url_logout }}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Выйти</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                {% if url_login %}<a href="{{ url_login }}">Войти</a>{% endif %}
+                {% if url_register %}<a href="{{ url_register }}">Регистрация</a>{% endif %}
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container">
+        <a href="{{ url_home|default:'#' }}">🏠 Главная</a>
+        <a href="{{ url_products|default:'#' }}">🛒 Товары</a>
+        <a href="{{ url_news|default:'#' }}">📰 Новости</a>
+        <a href="{{ url_about|default:'#' }}">ℹ️ О компании</a>
+        <a href="{{ url_glossary|default:'#' }}">📖 Словарь</a>
+        <a href="{{ url_contacts|default:'#' }}">📞 Контакты</a>
+        <a href="{{ url_vacancies|default:'#' }}">💼 Вакансии</a>
+        <a href="{{ url_reviews|default:'#' }}">💬 Отзывы</a>
+        <a href="{{ url_promocodes|default:'#' }}">🏷️ Промокоды</a>
+        <a href="{{ url_privacy|default:'#' }}">🔒 Конфиденциальность</a>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2024 ХимМаркет — Интернет-магазин бытовой химии</p>
+        <p style="margin-top: 10px;">
+            {% if url_privacy %}
+                <a href="{{ url_privacy }}">Политика конфиденциальности</a>
+            {% endif %}
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

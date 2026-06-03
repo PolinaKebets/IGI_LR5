@@ -1,0 +1,96 @@
+{% extends 'store/base.html' %}
+{% block title %}Создание заказа — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <a href="{% url 'store:order_list' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к заказам
+    </a>
+
+    <div class="card" style="padding: 35px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">🛒</div>
+            <h1 style="color: #667eea; margin-bottom: 10px;">Оформление заказа</h1>
+            <p style="color: #888;">Заполните форму для создания заказа</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #555; font-size: 15px;">
+                    📍 Пункт самовывоза
+                </label>
+                {{ form.pickup_point }}
+                {% if form.pickup_point.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.pickup_point.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #555; font-size: 15px;">
+                    🏷️ Промокод (если есть)
+                </label>
+                {{ form.promo_code }}
+                {% if form.promo_code.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.promo_code.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <h2 style="color: #333; margin-bottom: 20px; font-size: 22px;">📦 Товары в заказе</h2>
+            <div style="background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 25px; max-height: 400px; overflow-y: auto;">
+                <table style="width: 100%; margin: 0;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; padding: 12px;">Товар</th>
+                            <th style="width: 100px; padding: 12px;">Цена</th>
+                            <th style="width: 120px; padding: 12px;">Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 15px 12px;">
+                                <strong style="color: #333;">{{ product.name }}</strong>
+                                <input type="hidden" name="product_ids" value="{{ product.id }}">
+                                <p style="color: #888; font-size: 12px; margin: 5px 0 0 0;">
+                                    {% if product.stock_quantity > 0 %}
+                                        ✓ В наличии: {{ product.stock_quantity }}
+                                    {% else %}
+                                        <span style="color: #eb3349;">✗ Нет в наличии</span>
+                                    {% endif %}
+                                </p>
+                            </td>
+                            <td style="padding: 15px 12px; font-weight: 600; color: #667eea;">
+                                {{ product.price }} BYN
+                            </td>
+                            <td style="padding: 15px 12px;">
+                                <input type="number" name="quantities" value="0" min="0" 
+                                       max="{{ product.stock_quantity }}" 
+                                       style="width: 80px; padding: 8px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px; text-align: center;">
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" style="padding: 30px; text-align: center; color: #999;">
+                                Товары для заказа недоступны
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button type="submit" class="btn btn-success" style="flex: 1; padding: 15px 30px; font-size: 16px;">
+                    ✅ Создать заказ
+                </button>
+                <a href="{% url 'store:order_list' %}" class="btn btn-secondary" style="padding: 15px 30px;">
+                    Отмена
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

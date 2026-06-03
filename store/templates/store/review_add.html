@@ -1,0 +1,57 @@
+{% extends 'store/base.html' %}
+{% block title %}Добавить отзыв — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <a href="{% url 'store:reviews' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к отзывам
+    </a>
+
+    <div class="card" style="padding: 35px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">✍️</div>
+            <h1 style="color: #667eea; margin-bottom: 10px;">Оставить отзыв</h1>
+            <p style="color: #888;">Поделитесь своим опытом с другими покупателями</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    👤 Ваше имя
+                </label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    ⭐ Оценка
+                </label>
+                {{ form.rating }}
+                {% if form.rating.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.rating.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    💬 Текст отзыва
+                </label>
+                {{ form.text }}
+                {% if form.text.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.text.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">
+                📤 Отправить отзыв
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

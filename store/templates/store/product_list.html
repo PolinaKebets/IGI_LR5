@@ -1,0 +1,129 @@
+﻿{% extends 'store/base.html' %}
+{% block title %}Каталог товаров — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+    <h1 style="margin: 0;">🛒 Каталог товаров</h1>
+</div>
+
+<!-- Фильтры -->
+<div class="card" style="margin-bottom: 30px;">
+    <form method="get" action="{% url 'store:product_list' %}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; align-items: end;">
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px;">🔍 Поиск</label>
+                <input type="text" name="q" value="{{ request.GET.q }}" 
+                       placeholder="Название товара..." 
+                       style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px;">
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px;">📂 Категория</label>
+                <select name="category" style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px;">
+                    <option value="">Все категории</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat.id }}" {% if request.GET.category == cat.id|stringformat:"s" %}selected{% endif %}>
+                        {{ cat.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px;">💰 Цена от</label>
+                <input type="number" name="min_price" value="{{ request.GET.min_price }}" 
+                       placeholder="0" min="0"
+                       style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px;">
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px;">💰 Цена до</label>
+                <input type="number" name="max_price" value="{{ request.GET.max_price }}" 
+                       placeholder="9999" min="0"
+                       style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px;">
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px;">📊 Сортировка</label>
+                <select name="sort" style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px;">
+                    <option value="name" {% if current_sort == 'name' %}selected{% endif %}>По названию А-Я</option>
+                    <option value="-name" {% if current_sort == '-name' %}selected{% endif %}>По названию Я-А</option>
+                    <option value="price" {% if current_sort == 'price' %}selected{% endif %}>Сначала дешевле</option>
+                    <option value="-price" {% if current_sort == '-price' %}selected{% endif %}>Сначала дороже</option>
+                    <option value="created_date" {% if current_sort == 'created_date' %}selected{% endif %}>По дате (старые)</option>
+                    <option value="-created_date" {% if current_sort == '-created_date' %}selected{% endif %}>По дате (новые)</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Найти</button>
+                <a href="{% url 'store:product_list' %}" class="btn btn-secondary btn-sm">✕</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Список товаров -->
+{% if products %}
+<div class="grid-4">
+    {% for product in products %}
+    <div class="card" style="text-align: center; padding: 20px; transition: transform 0.3s ease;">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                 style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        {% else %}
+            <div style="height: 180px; background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%); border-radius: 10px; 
+                        display: flex; align-items: center; justify-content: center;
+                        margin-bottom: 15px; color: #999; font-size: 14px;">
+                📷 Нет фото
+            </div>
+        {% endif %}
+        
+        <h3 style="font-size: 16px; margin-bottom: 8px; color: #333; min-height: 45px;">{{ product.name }}</h3>
+        <p style="color: #888; font-size: 13px; margin-bottom: 10px;">
+            <span style="background: #f0f0f0; padding: 4px 10px; border-radius: 12px;">{{ product.category }}</span>
+        </p>
+        <p style="font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            {{ product.price }} BYN
+        </p>
+        <p style="font-size: 13px; margin: 10px 0;">
+            {% if product.stock_quantity > 0 %}
+                <span style="color: #38ef7d; font-weight: 600;">✓ В наличии ({{ product.stock_quantity }})</span>
+            {% else %}
+                <span style="color: #eb3349; font-weight: 600;">✗ Нет в наличии</span>
+            {% endif %}
+        </p>
+        <div style="margin-top: 15px;">
+            <a href="{% url 'store:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+{% if products.has_other_pages %}
+<div style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap;">
+    {% if products.has_previous %}
+        <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ products.previous_page_number }}" 
+           class="btn btn-secondary">← Назад</a>
+    {% endif %}
+    
+    <span class="btn" style="background: white; color: #667eea; cursor: default;">
+        Страница {{ products.number }} из {{ products.paginator.num_pages }}
+    </span>
+    
+    {% if products.has_next %}
+        <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ products.next_page_number }}" 
+           class="btn btn-primary">Вперед →</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% else %}
+<div class="card" style="text-align: center; padding: 60px 30px;">
+    <div style="font-size: 80px; margin-bottom: 20px;">🔍</div>
+    <h2 style="color: #666;">Товары не найдены</h2>
+    <p style="color: #999; margin: 15px 0;">Попробуйте изменить параметры поиска или фильтры</p>
+    <a href="{% url 'store:product_list' %}" class="btn btn-primary" style="margin-top: 20px;">
+        Сбросить фильтры
+    </a>
+</div>
+{% endif %}
+
+{% endblock %}

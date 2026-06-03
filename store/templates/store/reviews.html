@@ -1,0 +1,50 @@
+{% extends 'store/base.html' %}
+{% block title %}Отзывы покупателей — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 900px; margin: 0 auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+        <h1 style="margin: 0; color: #667eea;">💬 Отзывы покупателей</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'store:review_add' %}" class="btn btn-success">✍️ Оставить отзыв</a>
+        {% else %}
+            <a href="{% url 'store:login' %}" class="btn btn-primary">🔐 Войти для отзыва</a>
+        {% endif %}
+    </div>
+
+    {% if items %}
+    <div class="grid-2">
+        {% for r in items %}
+        <div class="card" style="padding: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                <div>
+                    <h3 style="margin-bottom: 5px; color: #333;">{{ r.name }}</h3>
+                    <p style="color: #888; font-size: 13px; margin: 0;">📅 {{ r.date|date:"d/m/Y" }}</p>
+                </div>
+                <div style="display: flex; gap: 3px;">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= r.rating %}
+                            <span style="color: #ffc107; font-size: 18px;">★</span>
+                        {% else %}
+                            <span style="color: #e0e0e0; font-size: 18px;">★</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <p style="color: #555; line-height: 1.6; margin: 0;">{{ r.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 60px 30px;">
+        <div style="font-size: 80px; margin-bottom: 20px;">💬</div>
+        <h2 style="color: #666;">Отзывов пока нет</h2>
+        <p style="color: #999; margin: 15px 0;">Будьте первым, кто оставит отзыв!</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'store:review_add' %}" class="btn btn-success" style="margin-top: 20px;">✍️ Написать отзыв</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

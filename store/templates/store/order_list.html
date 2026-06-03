@@ -1,0 +1,93 @@
+{% extends 'store/base.html' %}
+{% block title %}Мои заказы — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+    <h1 style="margin: 0;">📦 Мои заказы</h1>
+    <a href="{% url 'store:order_create' %}" class="btn btn-success">+ Создать заказ</a>
+</div>
+
+{% if orders %}
+<div class="card" style="padding: 0; overflow: hidden;">
+    <table style="width: 100%; margin: 0;">
+        <thead>
+            <tr>
+                <th style="width: 60px;">№</th>
+                <th>📅 Дата</th>
+                <th>📊 Статус</th>
+                <th>💰 Сумма</th>
+                <th style="width: 200px;">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td style="font-weight: 600; color: #667eea;">#{{ order.id }}</td>
+                <td>{{ order.sale_date|date:"d.m.Y H:i" }}</td>
+                <td>
+                    {% if order.status == 'pending' %}
+                        <span style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; 
+                               padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                            ⏳ Ожидает
+                        </span>
+                    {% elif order.status == 'processing' %}
+                        <span style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; 
+                               padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                            🔄 В обработке
+                        </span>
+                    {% elif order.status == 'shipped' %}
+                        <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+                               padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                            📦 Отправлен
+                        </span>
+                    {% elif order.status == 'delivered' %}
+                        <span style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; 
+                               padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                            ✅ Доставлен
+                        </span>
+                    {% elif order.status == 'cancelled' %}
+                        <span style="background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); color: white; 
+                               padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                            ❌ Отменён
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="font-weight: 700; color: #667eea;">{{ order.total_price }} BYN</td>
+                <td>
+                    <a href="{% url 'store:order_detail' order.pk %}" class="btn btn-info btn-sm" style="padding: 6px 14px;">
+                        👁️ Просмотр
+                    </a>
+                    {% if order.status != 'delivered' and order.status != 'cancelled' %}
+                    <form method="post" action="{% url 'store:order_cancel' order.pk %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Вы уверены, что хотите отменить заказ?')"
+                                style="padding: 6px 14px; margin-left: 5px;">
+                            ✕
+                        </button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: 60px 30px;">
+    <div style="font-size: 80px; margin-bottom: 20px;">📦</div>
+    <h2 style="color: #666;">У вас пока нет заказов</h2>
+    <p style="color: #999; margin: 15px 0;">Оформите первый заказ в нашем каталоге</p>
+    <a href="{% url 'store:product_list' %}" class="btn btn-primary" style="margin-top: 20px;">
+        🛒 Перейти в каталог
+    </a>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top: 30px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+    <p style="text-align: center; color: #667eea; margin: 0;">
+        🕐 Текущее время: <strong>{{ current_time_local|date:"d/m/Y H:i:s" }}</strong>
+    </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'store/base.html' %}
+{% block title %}Промокоды и скидки — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <h1 style="margin-bottom: 30px; color: #667eea;">🏷️ Промокоды и скидки</h1>
+
+    <!-- Active Promocodes -->
+    <h2 style="color: #11998e; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e0e0e0;">
+        ✅ Активные промокоды
+    </h2>
+    {% if active %}
+    <div class="grid-2" style="margin-bottom: 40px;">
+        {% for p in active %}
+        <div class="card" style="padding: 25px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; 
+                        background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%); 
+                        border-bottom-left-radius: 50%;"></div>
+            <div style="position: relative; z-index: 1;">
+                <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
+                            color: white; padding: 8px 15px; border-radius: 20px; 
+                            font-size: 12px; font-weight: 600; display: inline-block; margin-bottom: 15px;">
+                    🔥 {{ p.discount_percent }}% СКИДКА
+                </div>
+                <p style="font-size: 24px; font-weight: 700; color: #333; margin-bottom: 10px; 
+                          font-family: monospace; letter-spacing: 2px;">{{ p.code }}</p>
+                <p style="color: #888; font-size: 14px; margin: 0;">
+                    ⏰ Действует до {{ p.valid_to|date:"d/m/Y" }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 40px 30px; margin-bottom: 40px;">
+        <div style="font-size: 60px; margin-bottom: 15px;">🏷️</div>
+        <p style="color: #999;">Активных промокодов нет</p>
+    </div>
+    {% endif %}
+
+    <!-- Archive Promocodes -->
+    <h2 style="color: #f5576c; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e0e0e0;">
+        📁 Архив промокодов
+    </h2>
+    {% if archive %}
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <table style="width: 100%; margin: 0;">
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Промокод</th>
+                    <th style="width: 100px;">Скидка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in archive %}
+                <tr>
+                    <td style="padding: 15px; font-family: monospace; font-size: 16px; color: #888;">{{ p.code }}</td>
+                    <td style="padding: 15px; color: #888;">{{ p.discount_percent }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 40px 30px;">
+        <p style="color: #999;">Архив пуст</p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\chemshop",
+    "\\logs",
+    "\\media",
+    "\\static",
+    "\\store",
+    "\\store\\templates",
+    "\\store\\templates\\store",
+    "\\venv"
+  ],
+  "SelectedNode": "\\store\\views.py",
+  "PreviewInSolutionExplorer": false
+}

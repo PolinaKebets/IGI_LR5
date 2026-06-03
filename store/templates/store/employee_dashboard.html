@@ -1,0 +1,92 @@
+{% extends 'store/base.html' %}
+{% block title %}Панель сотрудника — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 1000px; margin: 0 auto;">
+    <h1 style="margin-bottom: 30px; color: #667eea;">💼 Панель сотрудника</h1>
+
+    <!-- Employee Info Card -->
+    <div class="card" style="padding: 30px; margin-bottom: 30px;">
+        <div style="display: flex; align-items: center; gap: 25px; flex-wrap: wrap;">
+            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
+                        border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                        font-size: 45px; color: white; flex-shrink: 0;">
+                💼
+            </div>
+            <div style="flex: 1;">
+                <h2 style="margin-bottom: 10px; color: #333;">{{ employee.user.get_full_name|default:employee.user.username }}</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div style="background: #f8f9fa; padding: 12px 18px; border-radius: 8px;">
+                        <p style="font-size: 12px; color: #888; margin-bottom: 3px;">📋 Должность</p>
+                        <p style="font-weight: 600; color: #333; margin: 0;">{{ employee.get_role_display }}</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 12px 18px; border-radius: 8px;">
+                        <p style="font-size: 12px; color: #888; margin-bottom: 3px;">📞 Телефон</p>
+                        <p style="font-weight: 600; color: #333; margin: 0;">{{ employee.phone }}</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 12px 18px; border-radius: 8px;">
+                        <p style="font-size: 12px; color: #888; margin-bottom: 3px;">📅 Дата найма</p>
+                        <p style="font-weight: 600; color: #333; margin: 0;">{{ employee.hire_date|date:"d.m.Y" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <h2 style="margin-bottom: 20px; color: #333;">📦 Последние заказы</h2>
+    {% if orders %}
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <table style="width: 100%; margin: 0;">
+            <thead>
+                <tr>
+                    <th style="width: 70px;">№</th>
+                    <th>Клиент</th>
+                    <th>Дата</th>
+                    <th>Статус</th>
+                    <th style="text-align: right; width: 120px;">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td style="padding: 15px; font-weight: 600; color: #667eea;">#{{ order.id }}</td>
+                    <td style="padding: 15px; color: #333;">
+                        {{ order.customer.user.get_full_name|default:order.customer.user.username }}
+                    </td>
+                    <td style="padding: 15px; color: #666;">{{ order.sale_date|date:"d.m.Y" }}</td>
+                    <td style="padding: 15px;">
+                        {% if order.status == 'pending' %}
+                            <span style="background: #f093fb; color: white; padding: 5px 12px; border-radius: 12px; font-size: 12px;">⏳</span>
+                        {% elif order.status == 'processing' %}
+                            <span style="background: #4facfe; color: white; padding: 5px 12px; border-radius: 12px; font-size: 12px;">🔄</span>
+                        {% elif order.status == 'shipped' %}
+                            <span style="background: #667eea; color: white; padding: 5px 12px; border-radius: 12px; font-size: 12px;">📦</span>
+                        {% elif order.status == 'delivered' %}
+                            <span style="background: #11998e; color: white; padding: 5px 12px; border-radius: 12px; font-size: 12px;">✅</span>
+                        {% elif order.status == 'cancelled' %}
+                            <span style="background: #eb3349; color: white; padding: 5px 12px; border-radius: 12px; font-size: 12px;">❌</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding: 15px; text-align: right; font-weight: 600; color: #667eea;">{{ order.total_price }} BYN</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 60px 30px;">
+        <div style="font-size: 60px; margin-bottom: 15px;">📋</div>
+        <p style="color: #999;">Нет заказов для отображения</p>
+    </div>
+    {% endif %}
+
+    <!-- Time Info -->
+    <div class="card" style="background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%); padding: 20px; margin-top: 30px;">
+        <p style="text-align: center; color: #11998e; margin: 0; font-size: 14px;">
+            🕐 <strong>Текущее время:</strong> {{ current_time_local|date:"d/m/Y H:i:s" }}
+        </p>
+    </div>
+</div>
+
+{% endblock %}

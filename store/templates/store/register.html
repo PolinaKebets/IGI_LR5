@@ -1,0 +1,84 @@
+﻿{% extends 'store/base.html' %}
+{% block title %}Регистрация — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 500px; margin: 40px auto;">
+    <div class="card" style="padding: 40px 35px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">✨</div>
+            <h2 style="color: #764ba2; margin-bottom: 10px;">Создать аккаунт</h2>
+            <p style="color: #888;">Заполните форму для регистрации</p>
+        </div>
+
+        <form method="post" style="display: flex; flex-direction: column; gap: 18px;">
+            {% csrf_token %}
+            
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    👤 Имя пользователя
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    📧 Email
+                </label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    🔒 Пароль
+                </label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.password1.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    🔐 Повторите пароль
+                </label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.password2.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            {% if form.non_field_errors %}
+            <div class="message error" style="padding: 12px 15px; border-radius: 8px; font-size: 14px;">
+                {{ form.non_field_errors.0 }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-success" 
+                    style="width: 100%; padding: 15px; font-size: 16px; margin-top: 10px;">
+                🎉 Зарегистрироваться
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px solid #eee;">
+            <p style="color: #666; margin-bottom: 15px;">Уже есть аккаунт?</p>
+            <a href="{% url 'store:login' %}" class="btn btn-primary" 
+               style="display: inline-block; min-width: 150px;">
+                🔐 Войти
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'store:home' %}" style="color: #667eea; text-decoration: none; font-size: 14px;">
+                ← Вернуться на главную
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

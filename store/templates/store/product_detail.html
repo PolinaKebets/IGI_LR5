@@ -1,0 +1,111 @@
+{% extends 'store/base.html' %}
+{% block title %}{{ product.name }} — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 900px; margin: 0 auto;">
+    <a href="{% url 'store:product_list' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к каталогу
+    </a>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px;">
+            <!-- Фото товара -->
+            <div>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                         style="width: 100%; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                {% else %}
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%); 
+                                border-radius: 15px; display: flex; align-items: center; justify-content: center; 
+                                font-size: 80px; color: #ccc;">
+                        📷
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Информация о товаре -->
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+                       padding: 6px 15px; border-radius: 20px; font-size: 13px; 
+                       display: inline-block; margin-bottom: 15px; width: fit-content;">
+                    {{ product.category.name|default:"Без категории" }}
+                </span>
+                
+                <h1 style="font-size: 32px; margin-bottom: 15px; color: #333;">{{ product.name }}</h1>
+                
+                <p style="color: #888; font-size: 15px; margin-bottom: 20px; line-height: 1.6;">
+                    {{ product.description|default:"Описание товара отсутствует" }}
+                </p>
+
+                <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); 
+                      padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                    <p style="font-size: 36px; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px;">
+                        {{ product.price }} BYN
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                        <p style="font-size: 13px; color: #888; margin-bottom: 5px;">📦 Наличие</p>
+                        <p style="font-weight: 600; {% if product.stock_quantity > 0 %}color: #38ef7d;{% else %}color: #eb3349;{% endif %}">
+                            {% if product.stock_quantity > 0 %}
+                                ✓ {{ product.stock_quantity }} шт.
+                            {% else %}
+                                ✗ Нет в наличии
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                        <p style="font-size: 13px; color: #888; margin-bottom: 5px;">🏭 Производитель</p>
+                        <p style="font-weight: 600; color: #333;">
+                            {% for m in product.manufacturers.all %}
+                                {{ m.name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Нет данных
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Совет по безопасности -->
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); 
+                      padding: 20px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid #f5c6cb;">
+                    <p style="font-weight: 600; color: #856404; margin-bottom: 5px;">💡 Совет по безопасности</p>
+                    <p style="color: #856404; font-size: 14px; margin: 0;">{{ safety_tip }}</p>
+                </div>
+
+                {% if product.is_available %}
+                <a href="{% url 'store:order_create' %}" class="btn btn-success" style="padding: 15px 30px; font-size: 16px;">
+                    🛒 Заказать
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="card" style="margin-top: 30px; padding: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 20px;">📋 Информация о товаре</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div>
+                <p style="font-size: 13px; color: #888; margin-bottom: 5px;">🔖 Артикул</p>
+                <p style="font-weight: 600; color: #333;">#{{ product.id }}</p>
+            </div>
+            <div>
+                <p style="font-size: 13px; color: #888; margin-bottom: 5px;">📂 Категория</p>
+                <p style="font-weight: 600; color: #333;">{{ product.category.name|default:"—" }}</p>
+            </div>
+            <div>
+                <p style="font-size: 13px; color: #888; margin-bottom: 5px;">📅 Дата добавления</p>
+                <p style="font-weight: 600; color: #333;">{{ product.created_date|date:"d/m/Y H:i" }}</p>
+            </div>
+            <div>
+                <p style="font-size: 13px; color: #888; margin-bottom: 5px;">🔄 Обновлено</p>
+                <p style="font-weight: 600; color: #333;">{{ product.updated_date|date:"d/m/Y H:i" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

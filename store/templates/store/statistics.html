@@ -1,0 +1,196 @@
+{% extends 'store/base.html' %}
+{% block title %}Статистика — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="margin-bottom: 30px; color: #667eea;">📊 Панель статистики</h1>
+
+    <!-- Stat Cards -->
+    <div class="grid-4" style="margin-bottom: 40px;">
+        <div class="card" style="text-align: center; padding: 25px;">
+            <div style="font-size: 40px; margin-bottom: 10px;">🛒</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">Товаров</p>
+            <p style="font-size: 32px; font-weight: 700; color: #667eea; margin: 0;">{{ top_product.product__id|default:0 }}</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 25px;">
+            <div style="font-size: 40px; margin-bottom: 10px;">💰</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">Выручка</p>
+            <p style="font-size: 32px; font-weight: 700; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
+               -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">
+                {{ total_revenue|floatformat:2 }} BYN
+            </p>
+        </div>
+        <div class="card" style="text-align: center; padding: 25px;">
+            <div style="font-size: 40px; margin-bottom: 10px;">📋</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">Средний чек</p>
+            <p style="font-size: 32px; font-weight: 700; color: #764ba2; margin: 0;">{{ avg_order_value|floatformat:2 }} BYN</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 25px;">
+            <div style="font-size: 40px; margin-bottom: 10px;">📂</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">Категорий</p>
+            <p style="font-size: 32px; font-weight: 700; color: #f5576c; margin: 0;">{{ products_by_category.count }}</p>
+        </div>
+    </div>
+
+    <!-- Top Product & Unsold -->
+    <div class="grid-2" style="margin-bottom: 40px;">
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #11998e; margin-bottom: 20px;">🏆 Топ товар</h3>
+            {% if top_product %}
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 60px; margin-bottom: 15px;">🌟</div>
+                <h4 style="color: #333; margin-bottom: 10px;">{{ top_product.product__name }}</h4>
+                <p style="font-size: 24px; font-weight: 700; color: #11998e;">{{ top_product.qty }} шт.</p>
+                <p style="color: #888; font-size: 14px;">продано</p>
+            </div>
+            {% else %}
+            <p style="text-align: center; color: #999; padding: 40px 0;">Нет данных о продажах</p>
+            {% endif %}
+        </div>
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #f5576c; margin-bottom: 20px;">🐌 Неликвидные товары</h3>
+            <ul style="list-style: none; padding: 0;">
+                {% for product in unsold_products %}
+                <li style="padding: 12px 15px; margin-bottom: 10px; background: #f8f9fa; border-radius: 8px; 
+                    display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #f5576c;">⚠️</span>
+                    <span style="color: #666;">{{ product.name }}</span>
+                </li>
+                {% empty %}
+                <li style="text-align: center; color: #11998e; padding: 40px 0;">
+                    ✅ Все товары продаются
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid-2" style="margin-bottom: 40px;">
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #667eea; margin-bottom: 20px;">📈 Продажи по месяцам</h3>
+            <div style="height: 300px; position: relative;">
+                <canvas id="monthlyRevenueChart"></canvas>
+            </div>
+        </div>
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #764ba2; margin-bottom: 20px;">📊 Товары по категориям</h3>
+            <div style="height: 300px; position: relative;">
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="grid-2" style="margin-bottom: 40px;">
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #4facfe; margin-bottom: 20px;">🏙️ Клиенты по городам</h3>
+            <div style="max-height: 300px; overflow-y: auto;">
+                <table style="width: 100%; margin: 0;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Город</th>
+                            <th style="text-align: right;">Клиентов</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in customers_by_city %}
+                        <tr>
+                            <td style="padding: 12px; color: #333;">{{ item.city|default:"Не указан" }}</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600; color: #4facfe;">{{ item.customer_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card" style="padding: 25px;">
+            <h3 style="color: #f093fb; margin-bottom: 20px;">📂 Категории товаров</h3>
+            <div style="max-height: 300px; overflow-y: auto;">
+                <table style="width: 100%; margin: 0;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Категория</th>
+                            <th style="text-align: right;">Товаров</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cat in products_by_category %}
+                        <tr>
+                            <td style="padding: 12px; color: #333;">{{ cat.name }}</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600; color: #f093fb;">{{ cat.product_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Time Info -->
+    <div class="card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 20px;">
+        <p style="text-align: center; color: #667eea; margin: 0; font-size: 14px;">
+            🕐 <strong>Время генерации:</strong><br>
+            <span style="color: #888;">UTC:</span> {{ current_time_utc|date:"d/m/Y H:i:s" }} &nbsp;|&nbsp;
+            <span style="color: #888;">Минск:</span> {{ current_time_local|date:"d/m/Y H:i:s" }}
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Monthly Revenue Chart
+    const revenueCtx = document.getElementById('monthlyRevenueChart').getContext('2d');
+    new Chart(revenueCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for m in monthly_revenue %}'{{ m.month|date:"M Y" }}',{% endfor %}],
+            datasets: [{
+                label: 'Выручка (BYN)',
+                data: [{% for m in monthly_revenue %}{{ m.revenue|floatformat:0 }},{% endfor %}],
+                backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 1,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { 
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+                x: { grid: { display: false } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // Category Chart
+    const catCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(catCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for cat in products_by_category %}'{{ cat.name }}',{% endfor %}],
+            datasets: [{
+                data: [{% for cat in products_by_category %}{{ cat.product_count }},{% endfor %}],
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(118, 75, 162, 0.8)',
+                    'rgba(240, 147, 251, 0.8)',
+                    'rgba(245, 87, 108, 0.8)',
+                    'rgba(79, 172, 254, 0.8)',
+                    'rgba(0, 242, 254, 0.8)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+});
+</script>
+{% endblock %}

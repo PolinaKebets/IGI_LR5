@@ -61,23 +61,20 @@ def get_product_safety_info(product_name):
 
 # Main pages
 def home(request):
-    """Home page - shows latest article"""
+    """Home page - shows calendar and latest article"""
     year = 2026
     month = 6
 
     cal = calendar.monthcalendar(year, month)
     weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 
-    context = {
-        'calendar_weeks': cal,
-        'weekdays': weekdays,
-    }
-
     last_article = Article.objects.filter(is_published=True).order_by('-published_date').first()
     currency_rates = get_currency_rates()
     safety_tip = get_product_safety_info('')
 
     context = {
+        'calendar_weeks': cal,
+        'weekdays': weekdays,
         'last_article': last_article,
         'currency_rates': currency_rates,
         'safety_tip': safety_tip,

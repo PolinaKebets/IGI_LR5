@@ -148,16 +148,61 @@ def privacy(request):
 
 
 def calendar_view(request):
-    """Text calendar view"""
+    """Calendar view with visual month grid and pickup points working hours"""
+    from datetime import timedelta
+    from store.models import PickupPoint
+    
     now = timezone.now()
-    cal = TextCalendar()
-    calendar_text = cal.formatmonth(now.year, now.month)
+    
+    # Получаем первый и последний день месяца
+    first_day = now.replace(day=1)
+    if now.month == 12:
+        last_day = now.replace(year=now.year + 1, month=1, day=1) - timedelta(days=1)
+    else:
+        last_day = now.replace(month=now.month + 1, day=1) - timedelta(days=1)
+    
+    # Создаём календарь: список недель, каждая неделя - список дней
+    calendar_weeks = []
+    first_weekday = first_day.weekday()  # 0 = понедельник
+    current_day = 1
+    
+    # Предыдущий месяц (серые дни)
+    prev_month_last_day = (first_day - timedelta(days=1)).day
+    first_week = []
+    for i in range(first_weekday):
+        first_week.append({'day': prev_month_last_day - first_weekday + i + 1, 'current_month': False})
+    
+    # Текущий месяц
+    week = first_week
+    while current_day <= last_day.day:
+        if len(week) >= 7:
+            calendar_weeks.append(week)
+            week = []
+        week.append({'day': current_day, 'current_month': True, 'is_today': current_day == now.day})
+        current_day += 1
+    
+    # Следующий месяц (серые дни)
+    while len(week) < 7:
+        week.append({'day': len(week) - last_day.weekday(), 'current_month': False})
+    
+    if week:
+        calendar_weeks.append(week)
+    
+    # Получаем график работы пунктов выдачи
+    pickup_points = PickupPoint.objects.all().order_by('city', 'address')
+    
+    # Дни недели
+    weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     
     context = {
-        'calendar_text': calendar_text,
+        'calendar_weeks': calendar_weeks,
+        'weekdays': weekdays,
         'current_month': now.strftime('%B %Y'),
+        'current_month_num': now.month,
+        'current_year': now.year,
         'current_time_utc': now,
         'current_time_local': timezone.localtime(),
+        'pickup_points': pickup_points,
     }
     return render(request, 'store/calendar.html', context)
 

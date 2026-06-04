@@ -1,3 +1,6 @@
+<!-- templates/store/reviews.html -->
+<!-- ПОЛНОСТЬЮ ЗАМЕНИТЬ ФАЙЛ НА ЭТОТ: -->
+
 {% extends 'store/base.html' %}
 {% block title %}Отзывы — ХимМаркет{% endblock %}
 
@@ -20,13 +23,13 @@
                                 {% if forloop.counter <= review.rating %}⭐{% else %}☆{% endif %}
                             {% endfor %}
                         </div>
-                        <span style="color: #888; font-size: 13px;">📅 {{ review.created_at|date:"d.m.Y" }}</span>
+                        <span style="color: #888; font-size: 13px;">📅 {{ review.date|date:"d.m.Y H:i" }}</span>
                     </div>
                     <p style="margin-top: 15px; line-height: 1.5;">{{ review.text }}</p>
                 </div>
 
                 <!-- 🔽 Кнопки для автора отзыва -->
-                {% if user == review.user %}
+                {% if user.is_authenticated and user == review.user %}
                 <div style="display: flex; gap: 10px;">
                     <a href="{% url 'store:edit_review' review.id %}" class="btn btn-sm btn-info">✏️ Редактировать</a>
                     <a href="{% url 'store:delete_review' review.id %}" class="btn btn-sm btn-danger">🗑️ Удалить</a>

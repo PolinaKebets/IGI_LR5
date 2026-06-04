@@ -1,3 +1,6 @@
+# store/urls.py
+# ПОЛНОСТЬЮ ЗАМЕНИТЬ ФАЙЛ НА ЭТОТ:
+
 from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -7,10 +10,13 @@ app_name = 'store'
 
 urlpatterns = [
     path("", views.home, name="home"),
+
+    # Reviews — ТОЛЬКО ЭТИ 4 МАРШРУТА
     path('reviews/', views.reviews, name='reviews'),
     path('reviews/add/', views.add_review, name='add_review'),
-    path('reviews/<int:review_id>/edit/', views.edit_review, name='edit_review'),  # 🆕
-    path('reviews/<int:review_id>/delete/', views.delete_review, name='delete_review'),  # 🆕
+    path('reviews/<int:review_id>/edit/', views.edit_review, name='edit_review'),
+    path('reviews/<int:review_id>/delete/', views.delete_review, name='delete_review'),
+
     # auth
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
@@ -27,9 +33,6 @@ urlpatterns = [
     path("contacts/", views.contacts, name="contacts"),
     path("vacancies/", views.vacancies, name="vacancies"),
     path("privacy/", views.privacy, name="privacy"),
-
-    path("reviews/", views.reviews_list, name="reviews"),
-    path("reviews/add/", views.review_add, name="review_add"),
 
     path("promocodes/", views.promocodes, name="promo_codes"),
 

@@ -1,34 +1,39 @@
+<!-- templates/store/confirm_delete_review.html -->
+<!-- СОЗДАЙТЕ НОВЫЙ ФАЙЛ: -->
+
 {% extends 'store/base.html' %}
 {% block title %}Удалить отзыв — ХимМаркет{% endblock %}
 {% block content %}
 
 <div style="max-width: 500px; margin: 0 auto;">
-    <div class="card" style="text-align: center; padding: 40px;">
-        <div style="font-size: 60px; margin-bottom: 20px;">⚠️</div>
-        <h2 style="color: #eb3349; margin-bottom: 15px;">Удалить отзыв?</h2>
-        <p style="color: #666; margin-bottom: 25px;">
-            Вы уверены, что хотите удалить этот отзыв?<br>
-            Это действие нельзя отменить.
-        </p>
-        
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                <strong>{{ review.name }}</strong>
-                <div style="color: #ffc107;">
-                    {% for i in "12345"|make_list %}
-                        {% if forloop.counter <= review.rating %}⭐{% else %}☆{% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <p style="color: #555;">{{ review.text|truncatewords:30 }}</p>
+    <a href="{% url 'store:reviews' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к отзывам
+    </a>
+
+    <div class="card" style="padding: 35px; text-align: center;">
+        <div style="font-size: 60px; margin-bottom: 20px;">🗑️</div>
+        <h2 style="color: #eb3349; margin-bottom: 20px;">Удалить отзыв?</h2>
+
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
+            <p style="margin: 0 0 10px;"><strong>👤 Автор:</strong> {{ review.name }}</p>
+            <p style="margin: 0 0 10px;"><strong>⭐ Оценка:</strong>
+                {% for i in "12345"|make_list %}
+                    {% if forloop.counter <= review.rating %}⭐{% else %}☆{% endif %}
+                {% endfor %}
+            </p>
+            <p style="margin: 0;"><strong>💬 Текст:</strong> {{ review.text|truncatewords:30 }}</p>
         </div>
-        
+
+        <p style="color: #888; margin-bottom: 30px;">Это действие нельзя отменить.</p>
+
         <form method="post">
             {% csrf_token %}
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <a href="{% url 'store:reviews' %}" class="btn btn-secondary">Отмена</a>
-                <button type="submit" class="btn btn-danger">🗑️ Да, удалить</button>
-            </div>
+            <button type="submit" class="btn btn-danger" style="padding: 12px 30px; font-size: 16px; margin-right: 15px;">
+                Да, удалить
+            </button>
+            <a href="{% url 'store:reviews' %}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 16px;">
+                Отмена
+            </a>
         </form>
     </div>
 </div>

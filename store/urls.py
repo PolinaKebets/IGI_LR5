@@ -60,6 +60,8 @@ urlpatterns = [
     path("api/statistics/", views.api_statistics, name="api_statistics"),
     path("api/random-product/", views.api_random_product, name="api_random_product"),
     path("api/random-fact/", views.api_random_fact, name="api_random_fact"),
+    path("api/server-time/", views.api_server_time, name="api_server_time"),
+    path("api/echo/", views.api_echo, name="api_echo"),
 ]
 
 if settings.DEBUG:

@@ -303,7 +303,7 @@ def reviews(request):
 def add_review(request):
     """Добавление отзыва"""
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        form = ReviewForm(request.POST, request.FILES)
         if form.is_valid():
             review = form.save(commit=False)
             review.user = request.user
@@ -313,28 +313,33 @@ def add_review(request):
             return redirect('store:reviews')
     else:
         form = ReviewForm()
-    return render(request, 'store/add_review.html', {'form': form})
+    return render(request, 'store/review_add.html', {'form': form})
 
 
 @login_required
 def edit_review(request, review_id):
-    """Редактирование своего отзыва"""
+    """Редактирование отзыва: админ - любой, пользователь - только свой неодобренный"""
     review = get_object_or_404(Review, id=review_id)
 
-    # Проверка: только автор отзыва может редактировать
-    if review.user != request.user:
+    # Проверка прав: админ может редактировать любой, пользователь - только свой
+    if not request.user.is_superuser and review.user != request.user:
         messages.error(request, 'Вы не можете редактировать чужой отзыв!')
         return redirect('store:reviews')
 
-    # Нельзя редактировать уже одобренный отзыв
-    if review.is_approved:
+    # Пользователь не может редактировать одобренный отзыв (только админ может)
+    if review.is_approved and not request.user.is_superuser:
         messages.warning(request, 'Одобренный отзыв нельзя редактировать. Создайте новый отзыв.')
         return redirect('store:reviews')
 
     if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review)
+        form = ReviewForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
-            form.save()
+            review = form.save(commit=False)
+            # Если админ редактирует, отзыв остаётся одобренным
+            # Если пользователь редактирует, снимаем одобрение
+            if not request.user.is_superuser:
+                review.is_approved = False
+            review.save()
             messages.success(request, 'Ваш отзыв обновлён!')
             return redirect('store:reviews')
     else:
@@ -941,4 +946,23 @@ def api_random_fact(request):
     return JsonResponse({
         'fact': random.choice(facts),
         'category': 'chemistry',
+    })
+
+
+def api_server_time(request):
+    """API endpoint for current server time (example)"""
+    from datetime import datetime
+    return JsonResponse({
+        'server_time': datetime.now().isoformat(),
+        'timezone': 'Europe/Minsk',
+    })
+
+
+def api_echo(request):
+    """API endpoint that echoes back request data (example)"""
+    return JsonResponse({
+        'method': request.method,
+        'user': request.user.username if request.user.is_authenticated else 'anonymous',
+        'message': 'Echo API is working!',
+        'timestamp': timezone.now().isoformat(),
     })

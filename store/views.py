@@ -60,21 +60,31 @@ def get_product_safety_info(product_name):
 
 
 # Main pages
+import calendar
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Article
+
+
 def home(request):
     """Home page - shows calendar and latest article"""
+
+    # Создаём HTML календарь на июнь 2026
+    import calendar
+    cal = calendar.HTMLCalendar(firstweekday=0)  # 0 = понедельник
     year = 2026
     month = 6
 
-    cal = calendar.monthcalendar(year, month)
-    weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+    # Генерируем HTML календаря
+    calendar_html = cal.formatmonth(year, month)
 
+    # Получаем последнюю статью
     last_article = Article.objects.filter(is_published=True).order_by('-published_date').first()
     currency_rates = get_currency_rates()
     safety_tip = get_product_safety_info('')
 
     context = {
-        'calendar_weeks': cal,
-        'weekdays': weekdays,
+        'calendar_html': calendar_html,  # Передаём готовый HTML
         'last_article': last_article,
         'currency_rates': currency_rates,
         'safety_tip': safety_tip,

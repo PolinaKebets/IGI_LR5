@@ -15,61 +15,23 @@
     <table style="width: 100%; border-collapse: collapse; text-align: center;">
         <thead>
             <tr>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Пн</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Вт</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Ср</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Чт</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Пт</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Сб</th>
-                <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">Вс</th>
+                {% for day in weekdays %}
+                    <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">{{ day }}</th>
+                {% endfor %}
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px;">1</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">2</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">3</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">4</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">5</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">6</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">7</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px;">8</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">9</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">10</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">11</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">12</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">13</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">14</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px;">15</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">16</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">17</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">18</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">19</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">20</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">21</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px;">22</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">23</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">24</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">25</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">26</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">27</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">28</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px;">29</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">30</td>
-                <td style="border: 1px solid #ddd; padding: 10px;"></td>
-                <td style="border: 1px solid #ddd; padding: 10px;"></td>
-                <td style="border: 1px solid #ddd; padding: 10px;"></td>
-                <td style="border: 1px solid #ddd; padding: 10px;"></td>
-                <td style="border: 1px solid #ddd; padding: 10px;"></td>
-            </tr>
+            {% for week in calendar_weeks %}
+                <tr>
+                    {% for day in week %}
+                        {% if day == 0 %}
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #f0f0f0;"></td>
+                        {% else %}
+                            <td style="border: 1px solid #ddd; padding: 10px;">{{ day }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

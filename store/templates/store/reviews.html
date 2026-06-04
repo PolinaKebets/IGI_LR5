@@ -28,14 +28,13 @@
                     <p style="margin-top: 15px; line-height: 1.5;">{{ review.text }}</p>
                 </div>
 
-                <!-- 🔽 Кнопки для автора отзыва -->
                 {% if user.is_authenticated and user == review.user %}
                 <div style="display: flex; gap: 10px;">
                     <a href="{% url 'store:edit_review' review.id %}" class="btn btn-sm btn-info">✏️ Редактировать</a>
                     <a href="{% url 'store:delete_review' review.id %}" class="btn btn-sm btn-danger">🗑️ Удалить</a>
                 </div>
                 {% elif user.is_superuser %}
-                <!-- Админ может редактировать и удалить любой отзыв -->
+                <!-- Админ -->
                 <div style="display: flex; gap: 10px;">
                     <a href="{% url 'store:edit_review' review.id %}" class="btn btn-sm btn-info">✏️ Ред.</a>
                     <a href="{% url 'store:delete_review' review.id %}" class="btn btn-sm btn-danger">🗑️ Удалить</a>

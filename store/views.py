@@ -1,6 +1,3 @@
-# store/views.py
-# ПОЛНОСТЬЮ ЗАМЕНИТЬ ФАЙЛ НА ЭТОТ:
-
 import logging
 import json
 import requests
@@ -22,6 +19,40 @@ from .models import (
     PickupPoint, Customer, Employee, Order, OrderItem
 )
 from .forms import ReviewForm, CustomerProfileForm, OrderForm, LoginForm, RegisterForm, ProductFilterForm
+
+import calendar
+from datetime import datetime, date
+from django.shortcuts import render
+
+
+def home_view(request):
+    # Генерация календаря на июнь 2026
+    year = 2026
+    month = 6
+
+    # Создаём календарь (первый день недели - понедельник)
+    cal = calendar.monthcalendar(year, month)
+
+    # Названия дней недели (пн, вт, ср, чт, пт, сб, вс)
+    month_days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+
+    # Специальные даты (можно добавить классы для подсветки)
+    special_dates = {
+        12: 'holiday'  # 12 июня - праздничный день
+    }
+
+    context = {
+        'calendar_weeks': cal,
+        'month_days': month_days,
+        'special_dates': special_dates,
+        'current_year': year,
+        'current_month': month,
+        'month_name': calendar.month_name[month],
+    }
+
+    # Добавьте остальной ваш контекст сюда
+    return render(request, 'store/home.html', context)
+
 
 logger = logging.getLogger('store')
 
@@ -966,3 +997,4 @@ def api_echo(request):
         'message': 'Echo API is working!',
         'timestamp': timezone.now().isoformat(),
     })
+

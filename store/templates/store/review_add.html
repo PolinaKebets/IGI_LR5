@@ -14,9 +14,9 @@
             <p style="color: #888;">Поделитесь своим опытом с другими покупателями</p>
         </div>
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            
+
             <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
                     👤 Ваше имя
@@ -44,6 +44,16 @@
                 {{ form.text }}
                 {% if form.text.errors %}
                     <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.text.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    📷 Фото отзыва (необязательно)
+                </label>
+                {{ form.photo }}
+                {% if form.photo.errors %}
+                    <p style="color: #eb3349; font-size: 13px; margin-top: 5px;">{{ form.photo.errors.0 }}</p>
                 {% endif %}
             </div>
 

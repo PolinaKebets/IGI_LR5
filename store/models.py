@@ -115,6 +115,7 @@ class Review(models.Model):
     name = models.CharField('Имя', max_length=100)
     rating = models.IntegerField('Оценка', choices=RATING_CHOICES)
     text = models.TextField('Текст отзыва')
+    photo = models.ImageField('Фото', upload_to='reviews/', blank=True, null=True)
     date = models.DateTimeField('Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField('Дата обновления', auto_now=True)
     is_approved = models.BooleanField('Одобрен', default=False)

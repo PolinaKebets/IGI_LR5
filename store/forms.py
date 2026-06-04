@@ -104,7 +104,7 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        fields = ['name', 'rating', 'text']
+        fields = ['name', 'rating', 'text', 'photo']
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-input',
@@ -114,6 +114,9 @@ class ReviewForm(forms.ModelForm):
                 'class': 'form-input',
                 'rows': 4,
                 'placeholder': 'Напишите ваш отзыв...'
+            }),
+            'photo': forms.ClearableFileInput(attrs={
+                'class': 'form-input'
             }),
         }
 

@@ -563,7 +563,13 @@ def employee_dashboard(request):
 # Statistics view
 @user_passes_test(lambda u: u.is_superuser)
 def statistics(request):
-    """Statistics dashboard"""
+    """Statistics dashboard with matplotlib charts"""
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    import base64
+    from io import BytesIO
+    
     # Top product by quantity sold
     top_product = (
         OrderItem.objects.values('product__id', 'product__name')
@@ -591,11 +597,126 @@ def statistics(request):
         )
         .order_by('-month')[:12]
     )
+    
+    # Chart: Monthly Revenue
+    if monthly_revenue:
+        month_labels = [f"{item['month'].month}/{item['month'].year}" for item in reversed(monthly_revenue)]
+        month_values = [float(item['revenue']) for item in reversed(monthly_revenue)]
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.plot(month_labels, month_values, marker='o', linewidth=2, color='#6f42c1', markersize=8)
+        ax.set_title('Monthly Revenue', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Month')
+        ax.set_ylabel('Revenue (BYN)')
+        plt.xticks(rotation=45, ha='right')
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        chart_monthly_revenue = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+    else:
+        chart_monthly_revenue = None
 
     # Products by category
     products_by_category = ProductCategory.objects.annotate(
         product_count=Count('products')
     ).order_by('-product_count')
+    
+    # Chart: Products by Category
+    if products_by_category:
+        cat_names = [cat.name[:15] for cat in products_by_category]
+        cat_counts = [cat.product_count for cat in products_by_category]
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.bar(cat_names, cat_counts, color=['#6f42c1', '#e83e8c', '#fd7e14', '#20c997', '#0dcaf0'])
+        ax.set_title('Products by Category', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Category')
+        ax.set_ylabel('Number of Products')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        chart_products_by_category = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+    else:
+        chart_products_by_category = None
+
+    # Customers by city
+    customers_by_city = Customer.objects.values('city').annotate(
+        customer_count=Count('id')
+    ).order_by('-customer_count')[:5]
+    
+    # Chart: Customers by City
+    if customers_by_city:
+        city_names = [item['city'] or 'Unknown' for item in customers_by_city]
+        city_counts = [item['customer_count'] for item in customers_by_city]
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.bar(city_names, city_counts, color=['#6f42c1', '#e83e8c', '#fd7e14', '#20c997', '#0dcaf0'])
+        ax.set_title('Customers by City', fontsize=14, fontweight='bold')
+        ax.set_xlabel('City')
+        ax.set_ylabel('Number of Customers')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        chart_customers_by_city = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+    else:
+        chart_customers_by_city = None
+
+    # Average order value by month
+    avg_order_by_month = (
+        Order.objects.annotate(month=TruncMonth('sale_date'))
+        .values('month')
+        .annotate(avg_qty=Avg('order_items__quantity'))
+        .order_by('-month')[:12]
+    )
+    
+    # Chart: Average Order Quantity by Month
+    if avg_order_by_month:
+        month_labels = [f"{item['month'].month}/{item['month'].year}" for item in reversed(avg_order_by_month)]
+        avg_values = [float(item['avg_qty'] or 0) for item in reversed(avg_order_by_month)]
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.bar(month_labels, avg_values, color=['#6f42c1', '#e83e8c', '#fd7e14', '#20c997', '#0dcaf0'])
+        ax.set_title('Average Order Quantity by Month', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Month')
+        ax.set_ylabel('Average Quantity')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        chart_avg_order_by_month = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+    else:
+        chart_avg_order_by_month = None
+
+    # Top 5 products chart
+    top_5_products = (
+        OrderItem.objects.values('product__name')
+        .annotate(qty=Sum('quantity'))
+        .order_by('-qty')[:5]
+    )
+    
+    # Chart: Top 5 Products
+    if top_5_products:
+        prod_names = [item['product__name'][:20] for item in top_5_products]
+        prod_qtys = [item['qty'] for item in top_5_products]
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.barh(prod_names, prod_qtys, color=['#6f42c1', '#e83e8c', '#fd7e14', '#20c997', '#0dcaf0'])
+        ax.set_title('Top 5 Products by Quantity Sold', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Quantity Sold')
+        ax.set_ylabel('Product')
+        plt.tight_layout()
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        chart_top_products = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+    else:
+        chart_top_products = None
 
     # Average order value
     avg_order_value = Order.objects.aggregate(
@@ -615,6 +736,11 @@ def statistics(request):
         'products_by_category': products_by_category,
         'avg_order_value': avg_order_value,
         'customers_by_city': list(customers_by_city),
+        'chart_monthly_revenue': chart_monthly_revenue,
+        'chart_products_by_category': chart_products_by_category,
+        'chart_customers_by_city': chart_customers_by_city,
+        'chart_avg_order_by_month': chart_avg_order_by_month,
+        'chart_top_products': chart_top_products,
         'current_time_utc': timezone.now(),
         'current_time_local': timezone.localtime(),
     }
@@ -777,13 +903,42 @@ def api_format_reviews(request):
             'rating': review.rating,
             'stars': stars_full + stars_empty,
             'text': review.text,
-            'date': review.date.isoformat(),
-            'date_formatted': review.date.strftime('%d.%m.%Y %H:%M'),
+            'date': review.date.strftime('%d.%m.%Y %H:%M'),
             'is_approved': review.is_approved,
-            'can_delete': (
-                request.user.is_authenticated and
-                (review.user == request.user or request.user.is_superuser)
-            ),
         })
+    return JsonResponse({'reviews': data})
 
-    return JsonResponse({'reviews': data, 'count': len(data)})
+
+def api_random_product(request):
+    """API endpoint for random product (demo)"""
+    import random
+    products = list(Product.objects.all()[:20])
+    if products:
+        product = random.choice(products)
+        return JsonResponse({
+            'id': product.id,
+            'name': product.name,
+            'price': str(product.price),
+            'category': product.category.name if product.category else None,
+            'is_available': product.is_available,
+        })
+    return JsonResponse({'error': 'No products available'}, status=404)
+
+
+def api_random_fact(request):
+    """API endpoint for random chemical fact (demo)"""
+    facts = [
+        "Вода — единственное вещество, которое в природе существует во всех трёх агрегатных состояниях.",
+        "Золото можно растворить в царской водке (смеси азотной и соляной кислот).",
+        "Алмаз и графит состоят из одного и того же элемента — углерода.",
+        "Кислород — самый распространённый элемент в земной коре.",
+        "Ртуть — единственный металл, который при комнатной температуре находится в жидком состоянии.",
+        "Самый лёгкий газ — гелий, самый тяжёлый — радон.",
+        "В организме человека содержится около 250 грамм соли.",
+        "Бананы содержат радиоактивный изотоп калия-40.",
+    ]
+    import random
+    return JsonResponse({
+        'fact': random.choice(facts),
+        'category': 'chemistry',
+    })

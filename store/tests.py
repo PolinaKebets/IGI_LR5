@@ -290,7 +290,7 @@ class TestViews:
         assert response.status_code == 302
 
     def test_review_add_requires_login(self, client):
-        response = client.get(reverse('store:review_add'))
+        response = client.get(reverse('store:add_review'))
         assert response.status_code == 302
 
 

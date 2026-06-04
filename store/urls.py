@@ -7,7 +7,10 @@ app_name = 'store'
 
 urlpatterns = [
     path("", views.home, name="home"),
-
+    path('reviews/', views.reviews, name='reviews'),
+    path('reviews/add/', views.add_review, name='add_review'),
+    path('reviews/<int:review_id>/edit/', views.edit_review, name='edit_review'),  # 🆕
+    path('reviews/<int:review_id>/delete/', views.delete_review, name='delete_review'),  # 🆕
     # auth
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),

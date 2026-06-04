@@ -1,0 +1,36 @@
+{% extends 'store/base.html' %}
+{% block title %}Удалить отзыв — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div class="card" style="text-align: center; padding: 40px;">
+        <div style="font-size: 60px; margin-bottom: 20px;">⚠️</div>
+        <h2 style="color: #eb3349; margin-bottom: 15px;">Удалить отзыв?</h2>
+        <p style="color: #666; margin-bottom: 25px;">
+            Вы уверены, что хотите удалить этот отзыв?<br>
+            Это действие нельзя отменить.
+        </p>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <strong>{{ review.name }}</strong>
+                <div style="color: #ffc107;">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= review.rating %}⭐{% else %}☆{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <p style="color: #555;">{{ review.text|truncatewords:30 }}</p>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="{% url 'store:reviews' %}" class="btn btn-secondary">Отмена</a>
+                <button type="submit" class="btn btn-danger">🗑️ Да, удалить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -19,6 +19,83 @@ from .models import (
     PickupPoint, Customer, Employee, Order, OrderItem
 )
 from .forms import ReviewForm, CustomerProfileForm, OrderForm, LoginForm, RegisterForm, ProductFilterForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Review
+from .forms import ReviewForm
+
+
+# Существующая функция для списка отзывов
+def reviews(request):
+    reviews_list = Review.objects.filter(is_approved=True).order_by('-created_at')
+    return render(request, 'store/reviews.html', {'reviews': reviews_list})
+
+
+# Добавление отзыва
+@login_required
+def add_review(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.is_approved = False  # Требует модерации
+            review.save()
+            messages.success(request, 'Ваш отзыв отправлен на модерацию!')
+            return redirect('store:reviews')
+    else:
+        form = ReviewForm()
+    return render(request, 'store/add_review.html', {'form': form})
+
+
+# 🆕 Редактирование отзыва
+@login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    # Проверка: только автор отзыва может редактировать
+    if review.user != request.user:
+        messages.error(request, 'Вы не можете редактировать чужой отзыв!')
+        return redirect('store:reviews')
+
+    # Нельзя редактировать уже одобренный отзыв
+    if review.is_approved:
+        messages.warning(request, 'Одобренный отзыв нельзя редактировать. Создайте новый отзыв.')
+        return redirect('store:reviews')
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Ваш отзыв обновлён!')
+            return redirect('store:reviews')
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, 'store/edit_review.html', {
+        'form': form,
+        'review': review
+    })
+
+
+# 🆕 Удаление отзыва
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    # Проверка: только автор или админ может удалить
+    if review.user != request.user and not request.user.is_superuser:
+        messages.error(request, 'Вы не можете удалить чужой отзыв!')
+        return redirect('store:reviews')
+
+    if request.method == 'POST':
+        review.delete()
+        messages.success(request, 'Отзыв удалён!')
+        return redirect('store:reviews')
+
+    return render(request, 'store/confirm_delete_review.html', {'review': review})
+
 
 logger = logging.getLogger('store')
 

@@ -1,50 +1,58 @@
 {% extends 'store/base.html' %}
-{% block title %}Отзывы покупателей — ХимМаркет{% endblock %}
-{% block content %}
+{% block title %}Отзывы — ХимМаркет{% endblock %}
 
+{% block content %}
 <div style="max-width: 900px; margin: 0 auto;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
-        <h1 style="margin: 0; color: #667eea;">💬 Отзывы покупателей</h1>
-        {% if user.is_authenticated %}
-            <a href="{% url 'store:review_add' %}" class="btn btn-success">✍️ Оставить отзыв</a>
-        {% else %}
-            <a href="{% url 'store:login' %}" class="btn btn-primary">🔐 Войти для отзыва</a>
-        {% endif %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1>💬 Отзывы наших покупателей</h1>
+        <a href="{% url 'store:add_review' %}" class="btn btn-primary">➕ Оставить отзыв</a>
     </div>
 
-    {% if items %}
-    <div class="grid-2">
-        {% for r in items %}
-        <div class="card" style="padding: 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+    {% if reviews %}
+        {% for review in reviews %}
+        <div class="card" style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
                 <div>
-                    <h3 style="margin-bottom: 5px; color: #333;">{{ r.name }}</h3>
-                    <p style="color: #888; font-size: 13px; margin: 0;">📅 {{ r.date|date:"d/m/Y" }}</p>
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                        <strong style="font-size: 18px;">👤 {{ review.name }}</strong>
+                        <div style="color: #ffc107;">
+                            {% for i in "12345"|make_list %}
+                                {% if forloop.counter <= review.rating %}⭐{% else %}☆{% endif %}
+                            {% endfor %}
+                        </div>
+                        <span style="color: #888; font-size: 13px;">📅 {{ review.created_at|date:"d.m.Y" }}</span>
+                    </div>
+                    <p style="margin-top: 15px; line-height: 1.5;">{{ review.text }}</p>
                 </div>
-                <div style="display: flex; gap: 3px;">
-                    {% for i in "12345"|make_list %}
-                        {% if forloop.counter <= r.rating %}
-                            <span style="color: #ffc107; font-size: 18px;">★</span>
-                        {% else %}
-                            <span style="color: #e0e0e0; font-size: 18px;">★</span>
-                        {% endif %}
-                    {% endfor %}
+
+                <!-- 🔽 Кнопки для автора отзыва -->
+                {% if user == review.user %}
+                <div style="display: flex; gap: 10px;">
+                    <a href="{% url 'store:edit_review' review.id %}" class="btn btn-sm btn-info">✏️ Редактировать</a>
+                    <a href="{% url 'store:delete_review' review.id %}" class="btn btn-sm btn-danger">🗑️ Удалить</a>
                 </div>
+                {% elif user.is_superuser %}
+                <!-- Админ может удалить любой отзыв -->
+                <div style="display: flex; gap: 10px;">
+                    <a href="{% url 'store:delete_review' review.id %}" class="btn btn-sm btn-danger">🗑️ Удалить (админ)</a>
+                </div>
+                {% endif %}
             </div>
-            <p style="color: #555; line-height: 1.6; margin: 0;">{{ r.text }}</p>
+
+            {% if not review.is_approved %}
+            <div style="margin-top: 10px; padding: 8px; background: #fff3cd; border-radius: 5px; color: #856404; font-size: 13px;">
+                ⏳ На модерации (видите только вы)
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
-    </div>
     {% else %}
-    <div class="card" style="text-align: center; padding: 60px 30px;">
-        <div style="font-size: 80px; margin-bottom: 20px;">💬</div>
-        <h2 style="color: #666;">Отзывов пока нет</h2>
-        <p style="color: #999; margin: 15px 0;">Будьте первым, кто оставит отзыв!</p>
-        {% if user.is_authenticated %}
-            <a href="{% url 'store:review_add' %}" class="btn btn-success" style="margin-top: 20px;">✍️ Написать отзыв</a>
-        {% endif %}
-    </div>
+        <div class="card" style="text-align: center; padding: 60px;">
+            <div style="font-size: 50px; margin-bottom: 20px;">💭</div>
+            <h3>Пока нет отзывов</h3>
+            <p style="color: #888;">Будьте первым, кто оставит отзыв!</p>
+            <a href="{% url 'store:add_review' %}" class="btn btn-primary" style="margin-top: 20px;">Оставить отзыв</a>
+        </div>
     {% endif %}
 </div>
-
 {% endblock %}

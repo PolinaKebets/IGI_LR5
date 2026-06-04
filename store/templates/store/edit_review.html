@@ -1,0 +1,48 @@
+{% extends 'store/base.html' %}
+{% block title %}Редактировать отзыв — ХимМаркет{% endblock %}
+{% block content %}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <a href="{% url 'store:reviews' %}" class="btn btn-secondary" style="margin-bottom: 25px;">
+        ← Назад к отзывам
+    </a>
+
+    <div class="card" style="padding: 35px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">✏️</div>
+            <h1 style="color: #667eea; margin-bottom: 10px;">Редактировать отзыв</h1>
+            <p style="color: #888;">Исправьте текст или оценку</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    👤 Ваше имя
+                </label>
+                {{ form.name }}
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    ⭐ Оценка
+                </label>
+                {{ form.rating }}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #555;">
+                    💬 Текст отзыва
+                </label>
+                {{ form.text }}
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">
+                💾 Сохранить изменения
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

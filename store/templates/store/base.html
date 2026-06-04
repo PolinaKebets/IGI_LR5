@@ -301,6 +301,27 @@
         tr:last-child td {
             border-bottom: none;
         }
+        /* Стиль для таблицы календаря */
+        .calendar-table {
+            width: auto;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: none;
+        }
+        .calendar-table th, .calendar-table td {
+            padding: 8px 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .calendar-table td {
+            background: white;
+        }
+        .today {
+            background: #c8e6c9 !important;
+            font-weight: bold;
+            color: #2e7d32;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -385,13 +406,42 @@
         </div>
         {% endif %}
 
+        <!-- НАЧАЛО: Календарь работы пунктов выдачи -->
+        <div class="card">
+            <h3>📅 Календарь работы пунктов выдачи</h3>
+            <h4>График работы (июнь 2026):</h4>
+            <ul style="margin-bottom: 20px;">
+                <li><strong>Пн–Пт:</strong> 10:00 – 20:00</li>
+                <li><strong>Сб:</strong> 11:00 – 18:00</li>
+                <li><strong>Вс:</strong> выходной</li>
+                <li><strong>12 июня (пт) — сокращённый день до 17:00</strong> (праздничный)</li>
+            </ul>
+            <h4>Календарь на июнь 2026:</h4>
+            <table class="calendar-table">
+                <thead>
+                    <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>2</td><td>3</td><td class="today">4</td><td>5</td><td>6</td><td>7</td></tr>
+                    <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                    <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                    <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                    <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 15px; font-size: 0.9em; color: #555;">
+                📌 <strong>Сегодня:</strong> 4 июня 2026 (четверг) — выделен зелёным в календаре.
+            </p>
+        </div>
+        <!-- КОНЕЦ: Календарь работы пунктов выдачи -->
+
         {% block content %}{% endblock %}
     </div>
 </main>
 
 <footer>
     <div class="container">
-        <p>© 2024 ХимМаркет — Интернет-магазин бытовой химии</p>
+        <p>© 2026 ХимМаркет — Интернет-магазин бытовой химии</p>
         <p style="margin-top: 10px;">
             {% if url_privacy %}
                 <a href="{{ url_privacy }}">Политика конфиденциальности</a>

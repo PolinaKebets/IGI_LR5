@@ -4,6 +4,11 @@
 {% block content %}
 <div class="card">
     <h3>📅 Календарь работы пунктов выдачи</h3>
+
+    <!-- ОТЛАДКА: проверяем, приходят ли данные -->
+    <p style="color: red;">DEBUG: calendar_weeks = {{ calendar_weeks }}</p>
+    <p style="color: blue;">DEBUG: weekdays = {{ weekdays }}</p>
+
     <h4>График работы (июнь 2026):</h4>
     <ul style="margin-bottom: 20px;">
         <li><strong>Пн–Пт:</strong> 10:00 – 20:00</li>
@@ -12,28 +17,33 @@
         <li><strong>12 июня (пт) — сокращённый день до 17:00</strong> (праздничный)</li>
     </ul>
     <h4>Календарь на июнь 2026:</h4>
-    <table style="width: 100%; border-collapse: collapse; text-align: center;">
-        <thead>
-            <tr>
-                {% for day in weekdays %}
-                    <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">{{ day }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for week in calendar_weeks %}
+
+    {% if calendar_weeks %}
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <thead>
                 <tr>
-                    {% for day in week %}
-                        {% if day == 0 %}
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #f0f0f0;"></td>
-                        {% else %}
-                            <td style="border: 1px solid #ddd; padding: 10px;">{{ day }}</td>
-                        {% endif %}
+                    {% for day in weekdays %}
+                        <th style="border: 1px solid #ddd; padding: 10px; background-color: #667eea; color: white;">{{ day }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for week in calendar_weeks %}
+                    <tr>
+                        {% for day in week %}
+                            {% if day == 0 %}
+                                <td style="border: 1px solid #ddd; padding: 10px; background-color: #f0f0f0;">&nbsp;</td>
+                            {% else %}
+                                <td style="border: 1px solid #ddd; padding: 10px;">{{ day }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="color: red;">Ошибка: календарь не загрузился</p>
+    {% endif %}
 </div>
 
 <div class="card" style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);">

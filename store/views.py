@@ -27,21 +27,6 @@ from django.shortcuts import render
 import calendar
 from django.shortcuts import render
 
-
-def home_view(request):
-    year = 2026
-    month = 6
-
-    cal = calendar.monthcalendar(year, month)
-    weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-
-    context = {
-        'calendar_weeks': cal,
-        'weekdays': weekdays,
-    }
-
-    return render(request, 'store/home.html', context)
-
 logger = logging.getLogger('store')
 
 
@@ -77,6 +62,17 @@ def get_product_safety_info(product_name):
 # Main pages
 def home(request):
     """Home page - shows latest article"""
+    year = 2026
+    month = 6
+
+    cal = calendar.monthcalendar(year, month)
+    weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+
+    context = {
+        'calendar_weeks': cal,
+        'weekdays': weekdays,
+    }
+
     last_article = Article.objects.filter(is_published=True).order_by('-published_date').first()
     currency_rates = get_currency_rates()
     safety_tip = get_product_safety_info('')

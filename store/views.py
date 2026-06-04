@@ -733,3 +733,57 @@ def api_statistics(request):
         ),
     }
     return JsonResponse(stats)
+
+
+@login_required
+def api_delete_review(request, review_id):
+    """API: удаление отзыва (только автор или админ)"""
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Метод не поддерживается'}, status=405)
+
+    review = get_object_or_404(Review, id=review_id)
+
+    if review.user != request.user and not request.user.is_superuser:
+        return JsonResponse({'error': 'Нет прав на удаление этого отзыва'}, status=403)
+
+    review_data = {
+        'id': review.id,
+        'name': review.name,
+        'rating': review.rating,
+        'text': review.text,
+        'date': review.date.isoformat(),
+        'is_approved': review.is_approved,
+    }
+    review.delete()
+    return JsonResponse({'status': 'deleted', 'review': review_data})
+
+
+def api_format_reviews(request):
+    """API: список отзывов в JSON с форматированием"""
+    if request.user.is_authenticated:
+        qs = Review.objects.filter(
+            Q(is_approved=True) | Q(user=request.user)
+        ).order_by('-date')
+    else:
+        qs = Review.objects.filter(is_approved=True).order_by('-date')
+
+    data = []
+    for review in qs:
+        stars_full = '★' * review.rating
+        stars_empty = '☆' * (5 - review.rating)
+        data.append({
+            'id': review.id,
+            'name': review.name,
+            'rating': review.rating,
+            'stars': stars_full + stars_empty,
+            'text': review.text,
+            'date': review.date.isoformat(),
+            'date_formatted': review.date.strftime('%d.%m.%Y %H:%M'),
+            'is_approved': review.is_approved,
+            'can_delete': (
+                request.user.is_authenticated and
+                (review.user == request.user or request.user.is_superuser)
+            ),
+        })
+
+    return JsonResponse({'reviews': data, 'count': len(data)})

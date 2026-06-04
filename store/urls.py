@@ -58,6 +58,8 @@ urlpatterns = [
     # API
     path("api/currency-rates/", views.api_currency_rates, name="api_currency_rates"),
     path("api/statistics/", views.api_statistics, name="api_statistics"),
+    path("api/reviews/", views.api_format_reviews, name="api_format_reviews"),
+    path("api/reviews/<int:review_id>/delete/", views.api_delete_review, name="api_delete_review"),
 ]
 
 if settings.DEBUG:

@@ -69,16 +69,13 @@ from .models import Article
 def home(request):
     """Home page - shows calendar and latest article"""
 
-    # Создаём HTML календарь на июнь 2026
     import calendar
     cal = calendar.HTMLCalendar(firstweekday=0)  # 0 = понедельник
     year = 2026
     month = 6
 
-    # Генерируем HTML календаря
     calendar_html = cal.formatmonth(year, month)
 
-    # Получаем последнюю статью
     last_article = Article.objects.filter(is_published=True).order_by('-published_date').first()
     currency_rates = get_currency_rates()
     safety_tip = get_product_safety_info('')

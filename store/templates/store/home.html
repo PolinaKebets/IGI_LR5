@@ -2,7 +2,6 @@
 {% block title %}Главная — ХимМаркет{% endblock %}
 
 {% block content %}
-<!-- НАЧАЛО: Календарь работы пунктов выдачи -->
 <div class="card">
     <h3>📅 Календарь работы пунктов выдачи</h3>
     <h4>График работы (июнь 2026):</h4>
@@ -10,15 +9,12 @@
         <li><strong>Пн–Пт:</strong> 10:00 – 20:00</li>
         <li><strong>Сб:</strong> 11:00 – 18:00</li>
         <li><strong>Вс:</strong> выходной</li>
-        <li><strong>12 июня (пт) — сокращённый день до 17:00</strong> (праздничный)</li>
     </ul>
     <h4>Календарь на июнь 2026:</h4>
 
-    <!-- HTML календарь из модуля calendar -->
     {{ calendar_html|safe }}
 
 </div>
-<!-- КОНЕЦ: Календарь работы пунктов выдачи -->
 
 <div class="card" style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);">
     <h1 style="font-size: 42px; margin-bottom: 15px;">🛍️ Добро пожаловать в ХимМаркет!</h1>
